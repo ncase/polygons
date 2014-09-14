@@ -2,14 +2,14 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var W = 25;
-var H = 25;
-var GRID_WIDTH = 20;
-var GRID_HEIGHT = 20;
+var W = 50;
+var H = 50;
+var GRID_WIDTH = 8;
+var GRID_HEIGHT = 8;
 
 var SELF_LOWER_LIMIT = 0.33;
 var SELF_UPPER_LIMIT = 1.0;
-var EMPTY_CHANCE = 0.1;
+var EMPTY_RATIO = 0.2;
 
 var images = {};
 images.happyTriangle = new Image();
@@ -69,8 +69,8 @@ function Peep(){
 		if(self.isHappy(self.getSameRatio())){
 			ctx.drawImage(self.happyImage, self.x*W, self.y*H, W, H);
 		}else{
-			//ctx.drawImage(self.sadImage, self.x*W + Math.random()*6-3, self.y*H + Math.random()*6-3, W, H);
-			ctx.drawImage(self.sadImage, self.x*W, self.y*H, W, H);
+			ctx.drawImage(self.sadImage, self.x*W + Math.random()*6-3, self.y*H + Math.random()*6-3, W, H);
+			//ctx.drawImage(self.sadImage, self.x*W, self.y*H, W, H);
 		}
 	}
 }
@@ -94,21 +94,31 @@ function SquarePeep(){
 
 }
 
+// POPULATE GRID
+
 var grid = [];
 for(var y=0;y<GRID_HEIGHT;y++){
 	var row = [];
 	grid.push(row);
 	for(var x=0;x<GRID_WIDTH;x++){
-		if(Math.random()<EMPTY_CHANCE){
-			row.push(null);
-		}else{
-			//var peep = ((x+y)%2==0) ? new TrianglePeep() : new SquarePeep();
-			var peep = (Math.random()>0.5) ? new TrianglePeep() : new SquarePeep();
-			peep.x = x;
-			peep.y = y;
-			row.push(peep);
-		}
+		//var peep = ((x+y)%2==0) ? new TrianglePeep() : new SquarePeep();
+		var peep = (Math.random()>0.5) ? new TrianglePeep() : new SquarePeep();
+		peep.x = x;
+		peep.y = y;
+		row.push(peep);
 	}
+}
+
+// REMOVE THINGS
+
+var removeThisMany = Math.floor((GRID_WIDTH*GRID_HEIGHT)*EMPTY_RATIO);
+while(removeThisMany>0){
+	var randomX = Math.floor(Math.random()*GRID_WIDTH);
+	var randomY = Math.floor(Math.random()*GRID_HEIGHT);
+	var peep = grid[randomY][randomX];
+	if(!peep) continue;
+	grid[randomY][randomX] = null;
+	removeThisMany--;
 }
 
 var ratioAverage = 0;
