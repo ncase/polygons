@@ -2,12 +2,13 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var W = 50;
-var H = 50;
-var GRID_WIDTH = 8;
-var GRID_HEIGHT = 8;
+var W = 15;
+var H = 15;
+var GRID_WIDTH = 30;
+var GRID_HEIGHT = 30;
 
-var SELF_LOWER_LIMIT = 0.33;
+//var SELF_LOWER_LIMIT = 0.33;
+var SELF_LOWER_LIMIT = 0.5;
 var SELF_UPPER_LIMIT = 1.0;
 var EMPTY_RATIO = 0.2;
 
@@ -168,7 +169,7 @@ window.onclick = function(){
 		if(done){
 			clearInterval(interval);
 			SELF_LOWER_LIMIT = 0.2;
-			SELF_UPPER_LIMIT = 0.8;
+			SELF_UPPER_LIMIT = 0.9;
 			alert("DONE - Sameratio: "+Math.round(ratioAverage*100)+"%");
 		}
 	},10);
