@@ -145,16 +145,20 @@ function Draggable(x,y){
 
 }
 
-var draggables = [];
-for(var x=0;x<10;x++){
-	for(var y=0;y<10;y++){
-		if(Math.random()<0.9){
-			var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-			draggable.color = (Math.random()<0.5) ? "triangle" : "square";
-			draggables.push(draggable);
+var draggables;
+function reset(){
+	draggables = [];
+	for(var x=0;x<10;x++){
+		for(var y=0;y<10;y++){
+			if(Math.random()<0.9){
+				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
+				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
+				draggables.push(draggable);
+			}
 		}
 	}
 }
+reset();
 
 function render(){
 	if(assetsLeft>0) return;
