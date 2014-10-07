@@ -14,9 +14,10 @@ body{
 .playable{
 	width: 100%;
 	background: #333;
+	overflow: hidden;
 }
 .playable iframe{
 	display: block;
-	margin: 0 auto;
+	margin: 25px auto;
 	border: none;
 }

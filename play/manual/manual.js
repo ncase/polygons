@@ -1,9 +1,28 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var TILE_SIZE = 70;
-var PEEP_SIZE = 60;
+var TILE_SIZE = 60;
+var PEEP_SIZE = 55;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
+
+var assetsLeft = 4;
+var onImageLoaded = function(){
+	assetsLeft--;
+};
+
+var images = {};
+images.happyTriangle = new Image();
+images.happyTriangle.onload = onImageLoaded;
+images.happyTriangle.src = "../img/happy_triangle.png";
+images.sadTriangle = new Image();
+images.sadTriangle.onload = onImageLoaded;
+images.sadTriangle.src = "../img/sad_triangle.png";
+images.happySquare = new Image();
+images.happySquare.onload = onImageLoaded;
+images.happySquare.src = "../img/happy_square.png";
+images.sadSquare = new Image();
+images.sadSquare.onload = onImageLoaded;
+images.sadSquare.src = "../img/sad_square.png";
 
 function Draggable(x,y){
 	
@@ -16,11 +35,18 @@ function Draggable(x,y){
 	var offsetX, offsetY;
 	var pickupX, pickupY;
 	self.pickup = function(){
+
 		pickupX = (Math.floor(self.x/TILE_SIZE)+0.5)*TILE_SIZE;
 		pickupY = (Math.floor(self.y/TILE_SIZE)+0.5)*TILE_SIZE;
 		offsetX = Mouse.x-self.x;
 		offsetY = Mouse.y-self.y;
 		self.dragged = true;
+
+		// Draw on top
+		var index = draggables.indexOf(self);
+		draggables.splice(index,1);
+		draggables.push(self);
+
 	};
 
 	self.drop = function(){
@@ -107,30 +133,37 @@ function Draggable(x,y){
 		if(self.shaking){
 			ctx.translate(Math.random()*10-5,Math.random()*10-5);
 		}
-		ctx.fillStyle = self.color;
-		ctx.fillRect(-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
+		var img;
+		if(self.color=="triangle"){
+			img = (self.shaking) ? images.sadTriangle : images.happyTriangle;
+		}else{
+			img = (self.shaking) ? images.sadSquare : images.happySquare;
+		}
+		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
 	};
 
 }
 
 var draggables = [];
-for(var x=0;x<8;x++){
-	for(var y=0;y<8;y++){
+for(var x=0;x<10;x++){
+	for(var y=0;y<10;y++){
 		if(Math.random()<0.8){
 			var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-			draggable.color = (Math.random()<0.5) ? "#cc2727" : "#bada55";
+			draggable.color = (Math.random()<0.5) ? "triangle" : "square";
 			draggables.push(draggable);
 		}
 	}
 }
 
 function render(){
+	if(assetsLeft>0) return;
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	for(var i=0;i<draggables.length;i++){
-		var draggable = draggables[i];
-		draggable.update();
-		draggable.draw();
+		draggables[i].update();
+	}
+	for(var i=0;i<draggables.length;i++){
+		draggables[i].draw();
 	}
 }
 
