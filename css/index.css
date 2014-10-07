@@ -1,4 +1,22 @@
 body{
 	margin:0;
 	background: #eee;
+
+	font-family: sans-serif;
+	font-size: 1.5em;
+	font-weight: 100;
+	
+}
+.chapter{
+	margin: 50px auto;
+	width:800px;
+}
+.playable{
+	width: 100%;
+	background: #333;
+}
+.playable iframe{
+	display: block;
+	margin: 0 auto;
+	border: none;
 }
