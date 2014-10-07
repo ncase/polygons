@@ -1,0 +1,188 @@
+<style>
+body{
+	margin:0;
+	font-family: sans-serif;
+	font-size: 20px;
+	font-weight: lighter;
+
+	background: #fff;
+}
+#essay{
+	width:800px;
+	margin: 50px auto;
+}
+#title{
+	font-size: 50px;
+	text-align: center;
+	padding: 50px 0px;
+	background: #000;
+	color:#fff;
+}
+iframe{
+	/*border: 1px solid #ddd;*/
+	border: none;
+	display: block;
+	margin: 25px auto;
+}
+</style>
+
+<body>
+
+<div id="title">THERE GOES THE NEIGHBORHOOD</div>
+
+<div id="essay">
+
+	<p>
+		<b>These are the adorable Polygon People.</b>
+	</p>
+	<p>
+		They're 50% Triangles, 50% Squares, and 100% slightly biased against each other.
+	</p>
+	<p>
+		// I'm not Shapist, some of my best friends are Squares!
+	</p>
+	<p>
+		Emphasis on the word *slightly*.
+		A Polygon would be happy with an even 50/50 split of neighbours of different types,
+		but <b>if less than 33% of their neighbours are like them, they will be unhappy</b>, and want to move somewhere else.
+	</p>
+	<p>
+		// I don't hate Triangles, I just that some biological differences matter...
+	</p>
+	<p>
+		Keep that in mind.
+		<i>Every single Polygon would be happy with a fully integrated neighbourhood.</i>
+		However, let's see what happens over time... 
+	</p>
+	<p>
+		<b>Click and drag unhappy Polygons to a random empty square.
+		<br>
+		Repeat until all Polygons are happy.</b>
+	</p>
+
+	<br><hr><br>
+
+	<p>
+		And the result... near-complete segregation.
+	</p>
+	<p>
+		This wasn't just a fluke. You can run this process over and over again with different boards,
+		and it will almost always tend towards a highly segregated outcome.
+	</p>
+	<p>
+		Try it yourself! This next interactive bit automates the Polygons moving around,
+		and measures the average % of a Polygon's neighbours that are the same shape.
+		We'll call this the Sameness %.
+	</p>
+	<p>
+		Because it's random at first, the Sameness % will usually start at around 50%.
+		But let's see what happens, what almost always happens, once they start moving around.
+	</p>
+	<p>
+		<b>Click GO to start the simulation.<br>
+		Click RESET to create a new *random* board of Triangles and Squares.</b>
+	</p>
+
+	<br><hr><br>
+
+	<p>
+		- The system is bad, even if the agents are good.<br>
+		- Institutional Shapism vs Individual Shapism.<br>
+		- An attack on sexism != An attack on men.<br>
+		? Tragedy of the Commons - personal benefit of your biases vs global stagnation over sameness?<br>
+		- "Don't hate the player, hate the game"?
+	</p>
+	<p>
+		Right now, the "unhappy" threshold for self-similar neighbours is at 33%.
+		Let's call this the Bias %.
+		Now, play around with the Bias %, and see what level of Sameness % this results in at the end.
+	</p>
+
+	<br><hr><br>
+
+	<p>
+		- Small biases can lead to large segregation. <br>
+		- Too large of a bias, and you won't even have a stable outcome.<br>
+		- This is Thomas Schelling's depressing discovery<br>
+		- Applies not just to racial segregation in major cities, but also women in STEM.
+	</p>
+	<p>
+		Now you may be thinking, well then the solution to desegregation is obvious, right?
+		Just turn the bias all the way down to zero?
+		Alas, in real life, we are *not* starting out on a randomly distributed board.
+	</p>
+	<p>
+		Here's a simulation where the board starts off very segregated - see what happens when you adjust the Bias %.
+	</p>
+
+	<br><hr><br>
+
+	<p>
+		As you can see, nothing happens.
+		In fact, it can get even *more* segregated if you turn the Bias % upwards.
+	</p>
+	<p>
+		- Equality is not an equilibrium.<br>
+		- You need active measures. (I used to believe we didn't, Schelling changed my mind?)<br>
+		- Being a "good" person is like being a "clean" person - it takes effort.
+	</p>
+	<p>
+		New rule: Polygons are now *also* unhappy if *too many* of their neighbours are exactly like them.
+		Let's call this the Conformity %.
+		This next simulation starts with a segregated neighbourhood, and all Polygons at 20% Bias and 99% Conformity.
+		(They're only upset it ALL of their neighbours are like them)
+	</p>
+
+	<br><hr><br>
+
+	<p>
+		- Top-down approaches are ineffective and hard to implement.<br>
+		- An effective bottom-up approach to re-integration.<br>
+		- The personal benefits of diversity in your social circles/workplace/conferences.
+	</p>
+	<p>
+		Finally, A FULL SANDBOX SIMULATION: bring the neighbourhood to segregation and back to equality.
+	</p>
+
+	<br><hr><br>
+
+	<p>
+		- Summary of lessons<br>
+		- Cautiously optimistic conclusion<br>
+		- Some concrete call to actions on sharing this message, and tips/further resources
+		to improving the diversity in their conferences/workplace/social circles.
+	</p>
+	<p>
+		Just for kicks, letting you drag Polygons anywhere and everywhere.
+	</p>
+
+	<br><hr><br>
+
+	<p>
+		Creative Commons Zero - use in education/videos/remix into infographics &amp; share with us
+	</p>
+
+
+	<!--
+	// active article
+	// active essay
+	// interactive nonfiction
+
+	The Outline I'm Thinking Of:
+	1. Manual Schelling Sim - the player acts out the algorithm
+	2. First Lesson - small biases can lead to large segregation. The system is bad, even if the agents are good.
+	3. Automatic Schelling Sim - the player can see what level of segregation results from what bias %
+	4. Second Lesson - how this applies not just to racial segregation in major cities, but also women in STEM.
+	5. Starts Segregated - a sim starts out segregated. Even if you reduce bias to zero, it'll stay segregated.
+	5. Third Lesson - Equality is not an equilibrium. We need active measures.
+	6. Non-Conformity Sim - agents now also move if too many of their neighbours are like them.
+	7. Fourth Lesson - A bottom-up approach to social integration
+	8. Summary of lessons
+	9. Cautiously optimistic conclusion
+	10. Some concrete call to actions on sharing this message, and tips to improving the diversity in their conferences/workplace/social circles.
+	11. Creative Commons Zero - use in education/videos/remix into infographics &amp; share with us
+	-->
+
+</div>
+
+</body>
