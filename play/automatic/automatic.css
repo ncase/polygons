@@ -5,3 +5,16 @@ body{
 iframe{
 	border: none;
 }
+#container{
+	position: relative;
+	width:800px;
+	height:600px;
+}
+#canvas{
+	display: block;
+	float:left;
+}
+#stats{
+	width:200px; height:100%;
+	float:left;
+}

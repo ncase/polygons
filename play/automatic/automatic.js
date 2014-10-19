@@ -33,6 +33,52 @@ function Draggable(x,y){
 	self.gotoX = x;
 	self.gotoY = y;
 
+	var offsetX, offsetY;
+	var pickupX, pickupY;
+	self.pickup = function(){
+
+		pickupX = (Math.floor(self.x/TILE_SIZE)+0.5)*TILE_SIZE;
+		pickupY = (Math.floor(self.y/TILE_SIZE)+0.5)*TILE_SIZE;
+		offsetX = Mouse.x-self.x;
+		offsetY = Mouse.y-self.y;
+		self.dragged = true;
+
+		// Draw on top
+		var index = draggables.indexOf(self);
+		draggables.splice(index,1);
+		draggables.push(self);
+
+	};
+
+	self.drop = function(){
+
+		var potentialX = (Math.floor(Mouse.x/TILE_SIZE)+0.5)*TILE_SIZE;
+		var potentialY = (Math.floor(Mouse.y/TILE_SIZE)+0.5)*TILE_SIZE;
+
+		var spotTaken = false;
+		for(var i=0;i<draggables.length;i++){
+			var d = draggables[i];
+			if(d==self) continue;
+			var dx = d.x-potentialX;
+			var dy = d.y-potentialY;
+			if(dx*dx+dy*dy<10){
+				spotTaken=true;
+				break;
+			}
+		}
+
+		if(spotTaken){
+			self.gotoX = pickupX;
+			self.gotoY = pickupY;
+		}else{
+			self.gotoX = potentialX;
+			self.gotoY = potentialY;
+		}
+
+		self.dragged = false;
+
+	}
+
 	var lastPressed = false;
 	self.update = function(){
 
@@ -58,6 +104,24 @@ function Draggable(x,y){
 			}
 		}
 
+		// Dragging
+		if(!self.dragged){
+			if(self.shaking && Mouse.pressed && !lastPressed){
+				var dx = Mouse.x-self.x;
+				var dy = Mouse.y-self.y;
+				if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
+					self.pickup();
+				}
+			}
+		}else{
+			self.gotoX = Mouse.x - offsetX;
+			self.gotoY = Mouse.y - offsetY;
+			if(!Mouse.pressed){
+				self.drop();
+			}
+		}
+		lastPressed = Mouse.pressed;
+
 		// Going to where you should
 		self.x = self.x*0.5 + self.gotoX*0.5;
 		self.y = self.y*0.5 + self.gotoY*0.5;
@@ -82,8 +146,11 @@ function Draggable(x,y){
 
 }
 
+window.START_SIM = false;
+
 var draggables;
 function reset(){
+	START_SIM = false;
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
@@ -97,8 +164,17 @@ function reset(){
 }
 reset();
 
+var doneBuffer = 60;
 function render(){
+
 	if(assetsLeft>0) return;
+	
+	// Is Stepping?
+	if(START_SIM){
+		step();
+	}
+
+	// Draw
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].update();
@@ -106,6 +182,26 @@ function render(){
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].draw();
 	}
+
+	// Done stepping?
+	if(isDone()){
+		doneBuffer--;
+		if(doneBuffer==0){
+			START_SIM = false;
+			console.log("DONE");
+		}
+	}else{
+		doneBuffer = 60;
+	}
+
+}
+
+function isDone(){
+	for(var i=0;i<draggables.length;i++){
+		var d = draggables[i];
+		if(d.shaking) return false;
+	}
+	return true;
 }
 
 function step(){

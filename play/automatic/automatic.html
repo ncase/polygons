@@ -5,10 +5,14 @@
 	<link href="automatic.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<canvas id="canvas" width="600" height="600"></canvas>
-	<br><br>
-	<button onclick="setInterval(step,50)">STEP</button>
-	<!--button onclick="reset()">NEW RANDOM BOARD</button-->
+	<div id="container">
+		<canvas id="canvas" width="600" height="600"></canvas>
+		<div id="stats">
+			<button onclick="START_SIM=true">RUN SIMULATION</button>
+			<br>
+			<button onclick="reset()">NEW RANDOM BOARD</button>
+		</div>
+	</div>
 </body>
 </html>
 
