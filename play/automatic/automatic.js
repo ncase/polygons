@@ -163,7 +163,7 @@ window.START_SIM = false;
 
 var draggables;
 var STATS;
-function reset(){
+window.reset = function(){
 
 	STATS = {
 		steps:0
