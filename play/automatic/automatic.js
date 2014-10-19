@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d");
 var stats_canvas = document.getElementById("stats_canvas");
 var stats_ctx = stats_canvas.getContext("2d");
 
-var BIAS = 0.7;
+var BIAS = 0.33;
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
 var GRID_SIZE = 20;
