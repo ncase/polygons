@@ -75,6 +75,10 @@ function Draggable(x,y){
 			self.gotoX = pickupX;
 			self.gotoY = pickupY;
 		}else{
+			
+			STATS.steps++;
+			writeStats();
+
 			self.gotoX = potentialX;
 			self.gotoY = potentialY;
 		}
@@ -226,7 +230,7 @@ function render(){
 }
 var stats_text = document.getElementById("stats_text");
 
-function writeStats(){
+window.writeStats = function(){
 
 	// Average Sameness Ratio
 	var total = 0;
@@ -244,7 +248,7 @@ function writeStats(){
 	stats_ctx.fillRect(x,y,1,5);
 
 	// Text
-	stats_text.innerHTML = "steps: "+STATS.steps+"<br>sameness: "+Math.floor(avg*100)+"%";
+	stats_text.innerHTML = "simulation: "+(START_SIM? "ON" : "OFF")+"<br>steps: "+STATS.steps+"<br>sameness: "+Math.floor(avg*100)+"%";
 
 }
 
@@ -316,4 +320,6 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 	render();
 })();
 
-reset();
+window.onload=function(){
+	reset();
+}

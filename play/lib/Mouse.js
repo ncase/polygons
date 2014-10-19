@@ -8,43 +8,45 @@
 	};
 	exports.Mouse = Mouse;
 
+	var canvas = document.getElementById("canvas");
+
 	// Event Handling
 	var onMouseMove,onTouchMove;
 	
-	window.addEventListener("mousedown",function(event){
+	canvas.addEventListener("mousedown",function(event){
 	    Mouse.pressed = true;
 	    onMouseMove(event);
 	    event.preventDefault();
 	    event.stopPropagation();
 	},false);
 
-	window.addEventListener("mouseup",function(event){
+	canvas.addEventListener("mouseup",function(event){
 	    Mouse.pressed = false;
 	    event.preventDefault();
 	    event.stopPropagation();
 	},false);
 
-	window.addEventListener("mousemove",onMouseMove = function(event){
+	canvas.addEventListener("mousemove",onMouseMove = function(event){
 		Mouse.x = event.pageX;
 		Mouse.y = event.pageY;
 		event.preventDefault();
 	    event.stopPropagation();
 	},false);
 
-	window.addEventListener("touchstart",function(event){
+	canvas.addEventListener("touchstart",function(event){
 	    Mouse.pressed = true;
 	    onTouchMove(event);
 	    event.preventDefault();
 	    event.stopPropagation();
 	},false);
 
-	window.addEventListener("touchend",function(event){
+	canvas.addEventListener("touchend",function(event){
 	    Mouse.pressed = false;
 	    event.preventDefault();
 	    event.stopPropagation();
 	},false);
 
-	window.addEventListener("touchmove",onTouchMove = function(event){
+	canvas.addEventListener("touchmove",onTouchMove = function(event){
 		Mouse.x = event.changedTouches[0].clientX;
 		Mouse.y = event.changedTouches[0].clientY;
 		event.preventDefault();

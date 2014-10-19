@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Automatic Simulation</title>
+	<title>Automatic Simulation - Change Bias</title>
 	<link href="automatic.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -11,6 +11,10 @@
 			<canvas id="stats_canvas" width="360" height="270"></canvas>
 			<br><br>
 			<span id="stats_text"></span>
+			<br><br>
+			bias: <span id="bias_text">33%</span>
+			<br>
+			<input style="width:100%" type="range" min="0" max="1" value="0.33" step="0.01" oninput="changeBias(value)">
 			<br><br>
 			<button onclick="START_SIM=!START_SIM; window.writeStats()">TOGGLE SIMULATION</button>
 			<br>
@@ -22,3 +26,4 @@
 
 <script src="../lib/Mouse.js"></script>
 <script src="automatic.js"></script>
+<script src="automatic_bias.js"></script>
