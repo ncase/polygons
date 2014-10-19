@@ -166,6 +166,8 @@ function reset(){
 	};
 	START_SIM = false;
 
+	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
+
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
@@ -176,8 +178,14 @@ function reset(){
 			}
 		}
 	}
+
+	// Write stats for first time
+	for(var i=0;i<draggables.length;i++){
+		draggables[i].update();
+	}
+	writeStats();
+
 }
-reset();
 
 var doneBuffer = 60;
 function render(){
@@ -224,7 +232,7 @@ function writeStats(){
 	var total = 0;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
-		total += d.sameness;
+		total += d.sameness || 0;
 	}
 	var avg = total/draggables.length;
 	if(isNaN(avg)) debugger;
@@ -307,3 +315,5 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 	requestAnimFrame(animloop);
 	render();
 })();
+
+reset();
