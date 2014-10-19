@@ -1,6 +1,10 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+var stats_canvas = document.getElementById("stats_canvas");
+var stats_ctx = stats_canvas.getContext("2d");
+
+var BIAS = 0.7;
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
 var GRID_SIZE = 20;
@@ -99,7 +103,12 @@ function Draggable(x,y){
 					}
 				}
 			}
-			if(neighbours>0 && (same/neighbours)<0.33){
+			if(neighbours>0){
+				self.sameness = (same/neighbours);
+			}else{
+				self.sameness = 1;
+			}
+			if(neighbours>0 && self.sameness<BIAS){
 				self.shaking = true;
 			}
 		}
@@ -149,8 +158,14 @@ function Draggable(x,y){
 window.START_SIM = false;
 
 var draggables;
+var STATS;
 function reset(){
+
+	STATS = {
+		steps:0
+	};
 	START_SIM = false;
+
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
@@ -190,9 +205,38 @@ function render(){
 			START_SIM = false;
 			console.log("DONE");
 		}
-	}else{
+	}else if(START_SIM){
+		
+		STATS.steps++;
 		doneBuffer = 60;
+
+		// Write stats
+		writeStats();
+
 	}
+
+}
+var stats_text = document.getElementById("stats_text");
+
+function writeStats(){
+
+	// Average Sameness Ratio
+	var total = 0;
+	for(var i=0;i<draggables.length;i++){
+		var d = draggables[i];
+		total += d.sameness;
+	}
+	var avg = total/draggables.length;
+	if(isNaN(avg)) debugger;
+
+	// Graph it
+	stats_ctx.fillStyle = "#cc2727";
+	var x = STATS.steps;
+	var y = 270 - avg*270;
+	stats_ctx.fillRect(x,y,1,5);
+
+	// Text
+	stats_text.innerHTML = "steps: "+STATS.steps+"<br>sameness: "+Math.floor(avg*100)+"%";
 
 }
 

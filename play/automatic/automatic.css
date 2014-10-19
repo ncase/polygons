@@ -7,7 +7,7 @@ iframe{
 }
 #container{
 	position: relative;
-	width:800px;
+	width:960px;
 	height:600px;
 }
 #canvas{
@@ -15,6 +15,9 @@ iframe{
 	float:left;
 }
 #stats{
-	width:200px; height:100%;
+	width:360px; height:100%;
 	float:left;
+}
+#stats_canvas{
+	background: #000;
 }
