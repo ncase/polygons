@@ -23,7 +23,7 @@
 			<input id="input_nonconform" style="width:100%" type="range" min="0" max="1" value="1.0" step="0.1" oninput="changeNonconform(value)">
 
 			<br><br>
-			<button onclick="START_SIM=!START_SIM; window.writeStats()">TOGGLE SIMULATION</button>
+			<button onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()">TOGGLE SIMULATION</button>
 			<br>
 			<button onclick="reset()">RESET BOARD</button>
 		</div>

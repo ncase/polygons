@@ -167,7 +167,8 @@ var STATS;
 window.reset = function(){
 
 	STATS = {
-		steps:0
+		steps:0,
+		offset:0
 	};
 	START_SIM = false;
 
@@ -217,6 +218,7 @@ function render(){
 		if(doneBuffer==0){
 			START_SIM = false;
 			console.log("DONE");
+			writeStats();
 		}
 	}else if(START_SIM){
 		
@@ -231,6 +233,10 @@ function render(){
 }
 var stats_text = document.getElementById("stats_text");
 
+var tmp_stats = document.createElement("canvas");
+tmp_stats.width = stats_canvas.width;
+tmp_stats.height = stats_canvas.height;
+
 window.writeStats = function(){
 
 	// Average Sameness Ratio
@@ -242,9 +248,19 @@ window.writeStats = function(){
 	var avg = total/draggables.length;
 	if(isNaN(avg)) debugger;
 
+	// If stats oversteps, bump back
+	if(STATS.steps>360+STATS.offset){
+		STATS.offset += 120;
+		var tctx = tmp_stats.getContext("2d");
+		tctx.clearRect(0,0,tmp_stats.width,tmp_stats.height);
+		tctx.drawImage(stats_canvas,0,0);
+		stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
+		stats_ctx.drawImage(tmp_stats,-119,0);
+	}
+
 	// Graph it
 	stats_ctx.fillStyle = "#cc2727";
-	var x = STATS.steps;
+	var x = STATS.steps - STATS.offset;
 	var y = 270 - avg*270;
 	stats_ctx.fillRect(x,y,1,5);
 

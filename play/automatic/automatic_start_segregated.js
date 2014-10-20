@@ -3,7 +3,8 @@ var POLYGON_POSITIONS = [{"x":15,"y":15,"color":0},{"x":15,"y":45,"color":0},{"x
 window.reset = function(){
 
 	STATS = {
-		steps:0
+		steps:0,
+		offset:0
 	};
 	START_SIM = false;
 
