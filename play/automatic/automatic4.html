@@ -15,12 +15,12 @@
 			<br><br>
 			bias: <span id="bias_text">33%</span>
 			<br>
-			<input style="width:100%" type="range" min="0" max="1" value="0.33" step="0.01" oninput="changeBias(value)">
+			<input id="input_bias" style="width:100%" type="range" min="0" max="1" value="0.1" step="0.01" oninput="changeBias(value)">
 
 			<br><br>
 			nonconform: <span id="nonconform_text">100%</span>
 			<br>
-			<input style="width:100%" type="range" min="0" max="1" value="1" step="0.01" oninput="changeNonconform(value)">
+			<input id="input_nonconform" style="width:100%" type="range" min="0" max="1" value="1.0" step="0.1" oninput="changeNonconform(value)">
 
 			<br><br>
 			<button onclick="START_SIM=!START_SIM; window.writeStats()">TOGGLE SIMULATION</button>
@@ -34,4 +34,5 @@
 <script src="../lib/Mouse.js"></script>
 <script src="automatic.js"></script>
 <script src="automatic_bias.js"></script>
+<script src="automatic_start_segregated.js"></script>
 <script src="automatic_nonconform.js"></script>

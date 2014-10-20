@@ -5,3 +5,6 @@ function changeBias(value){
 	window.BIAS = parseFloat(value);
 	bias_text.innerHTML = Math.floor(window.BIAS*100)+"%";
 }
+
+window.BIAS = parseFloat(document.getElementById("input_bias").value);
+bias_text.innerHTML = Math.floor(window.BIAS*100)+"%";

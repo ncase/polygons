@@ -4,6 +4,7 @@ var ctx = canvas.getContext("2d");
 var stats_canvas = document.getElementById("stats_canvas");
 var stats_ctx = stats_canvas.getContext("2d");
 
+var NONCONFORM = 1.00;
 var BIAS = 0.33;
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
@@ -112,7 +113,7 @@ function Draggable(x,y){
 			}else{
 				self.sameness = 1;
 			}
-			if(neighbours>0 && self.sameness<BIAS){
+			if(self.sameness<BIAS || self.sameness>NONCONFORM){
 				self.shaking = true;
 			}
 		}

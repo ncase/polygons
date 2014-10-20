@@ -5,3 +5,6 @@ function changeNonconform(value){
 	window.NONCONFORM = parseFloat(value);
 	nonconform_text.innerHTML = Math.floor(window.NONCONFORM*100)+"%";
 }
+
+window.NONCONFORM = parseFloat(document.getElementById("input_nonconform").value);
+nonconform_text.innerHTML = Math.floor(window.NONCONFORM*100)+"%";
