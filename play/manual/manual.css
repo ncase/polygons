@@ -1,7 +1,19 @@
 body{
 	margin:0;
 	overflow: hidden;
+	width:550px;
+	background: #222;
 }
-iframe{
-	border: none;
+#reset{
+	background: url(../img/new_board.png);
+	width:225px;
+	height:60px;
+	margin:0 auto;
+
+	cursor: pointer;
+}
+#reset:hover{
+	background-position: 0 -60px;
+	position: relative;
+	top:-3px;
 }

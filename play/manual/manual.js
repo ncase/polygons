@@ -1,28 +1,30 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var TILE_SIZE = 60;
-var PEEP_SIZE = 55;
+var TILE_SIZE = 55;
+var PEEP_SIZE = 50;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 
-var assetsLeft = 4;
+var assetsLeft = 0;
 var onImageLoaded = function(){
 	assetsLeft--;
 };
 
 var images = {};
-images.happyTriangle = new Image();
-images.happyTriangle.onload = onImageLoaded;
-images.happyTriangle.src = "../img/happy_triangle.png";
-images.sadTriangle = new Image();
-images.sadTriangle.onload = onImageLoaded;
-images.sadTriangle.src = "../img/sad_triangle.png";
-images.happySquare = new Image();
-images.happySquare.onload = onImageLoaded;
-images.happySquare.src = "../img/happy_square.png";
-images.sadSquare = new Image();
-images.sadSquare.onload = onImageLoaded;
-images.sadSquare.src = "../img/sad_square.png";
+function addAsset(name,src){
+	assetsLeft++;
+	images[name] = new Image();
+	images[name].onload = onImageLoaded;
+	images[name].src = src;
+}
+addAsset("yayTriangle","../img/yay_triangle.png");
+addAsset("yayTriangleBlink","../img/yay_triangle_blink.png");
+addAsset("mehTriangle","../img/meh_triangle.png");
+addAsset("sadTriangle","../img/sad_triangle.png");
+addAsset("yaySquare","../img/yay_square.png");
+addAsset("yaySquareBlink","../img/yay_square_blink.png");
+addAsset("mehSquare","../img/meh_square.png");
+addAsset("sadSquare","../img/sad_square.png");
 
 function Draggable(x,y){
 	
@@ -83,6 +85,7 @@ function Draggable(x,y){
 
 		// Shakiness?
 		self.shaking = false;
+		self.bored = false;
 		if(!self.dragged){
 			var neighbours = 0;
 			var same = 0;
@@ -100,6 +103,9 @@ function Draggable(x,y){
 			}
 			if(neighbours>0 && (same/neighbours)<0.33){
 				self.shaking = true;
+			}
+			if(neighbours==0 || (same/neighbours)>0.99){
+				self.bored = true;
 			}
 		}
 
@@ -127,17 +133,51 @@ function Draggable(x,y){
 
 	};
 
+	self.frame = 0;
+	self.blinking=0;
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
 		if(self.shaking){
-			ctx.translate(Math.random()*10-5,Math.random()*10-5);
+			self.frame+=0.07;
+			ctx.translate(0,20);
+			ctx.rotate(Math.sin(self.frame-(self.x+self.y)/200)*Math.PI*0.05);
+			ctx.translate(0,-20);
 		}
+
+		// Blinking
+		if(Math.random()<0.01){
+			self.blinking=10;
+		}
+
+		// Draw thing
 		var img;
 		if(self.color=="triangle"){
-			img = (self.shaking) ? images.sadTriangle : images.happyTriangle;
+			if(self.shaking){
+				img = images.sadTriangle;
+			}else if(self.bored){
+				img = images.mehTriangle;
+			}else{
+				if(self.blinking>0){
+					self.blinking--;
+					img = images.yayTriangleBlink;
+				}else{
+					img = images.yayTriangle;
+				}
+			}
 		}else{
-			img = (self.shaking) ? images.sadSquare : images.happySquare;
+			if(self.shaking){
+				img = images.sadSquare;
+			}else if(self.bored){
+				img = images.mehSquare;
+			}else{
+				if(self.blinking>0){
+					self.blinking--;
+					img = images.yaySquareBlink;
+				}else{
+					img = images.yaySquare;
+				}
+			}
 		}
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
@@ -150,7 +190,7 @@ function reset(){
 	draggables = [];
 	for(var x=0;x<10;x++){
 		for(var y=0;y<10;y++){
-			if(Math.random()<0.9){
+			if(Math.random()<0.85){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
 				draggables.push(draggable);
