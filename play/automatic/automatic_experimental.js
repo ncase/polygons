@@ -24,11 +24,27 @@ function addAsset(name,src){
 	images[name].src = src;
 }
 addAsset("yayTriangle","../img/yay_triangle.png");
+addAsset("yayTriangleBlink","../img/yay_triangle_blink.png");
 addAsset("mehTriangle","../img/meh_triangle.png");
 addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
+addAsset("yaySquareBlink","../img/yay_square_blink.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
+/*
+var images = {};
+images.happyTriangle = new Image();
+images.happyTriangle.onload = onImageLoaded;
+images.happyTriangle.src = "../img/happy_triangle.png";
+images.sadTriangle = new Image();
+images.sadTriangle.onload = onImageLoaded;
+images.sadTriangle.src = "../img/sad_triangle.png";
+images.happySquare = new Image();
+images.happySquare.onload = onImageLoaded;
+images.happySquare.src = "../img/happy_square.png";
+images.sadSquare = new Image();
+images.sadSquare.onload = onImageLoaded;
+images.sadSquare.src = "../img/sad_square.png";*/
 
 function Draggable(x,y){
 	
@@ -93,9 +109,11 @@ function Draggable(x,y){
 
 		// Shakiness?
 		self.shaking = false;
-		self.bored = false;
-
 		if(!self.dragged){
+
+			// EXPERIMENTAL
+			var HAVE_A_SHAPIST_NEARBY = false;
+
 			var neighbours = 0;
 			var same = 0;
 			for(var i=0;i<draggables.length;i++){
@@ -105,9 +123,13 @@ function Draggable(x,y){
 				var dy = d.y-self.y;
 				if(dx*dx+dy*dy<DIAGONAL_SQUARED){
 					neighbours++;
+					
 					if(d.color==self.color){
 						same++;
+					}else if(d.SHAPIST){
+						HAVE_A_SHAPIST_NEARBY = true;
 					}
+
 				}
 			}
 			if(neighbours>0){
@@ -118,8 +140,8 @@ function Draggable(x,y){
 			if(self.sameness<BIAS || self.sameness>NONCONFORM){
 				self.shaking = true;
 			}
-			if(self.sameness>0.99){
-				self.bored = true;
+			if(HAVE_A_SHAPIST_NEARBY){
+				self.shaking = true;
 			}
 		}
 
@@ -147,39 +169,27 @@ function Draggable(x,y){
 
 	};
 
-	self.frame = 0;
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
-		
 		if(self.shaking){
-			self.frame+=0.07;
-			ctx.translate(0,20);
-			ctx.rotate(Math.sin(self.frame-(self.x+self.y)/200)*Math.PI*0.05);
-			ctx.translate(0,-20);
+			ctx.translate(Math.random()*5-2.5,Math.random()*5-2.5);
 		}
-
-		// Draw thing
 		var img;
 		if(self.color=="triangle"){
-			if(self.shaking){
-				img = images.sadTriangle;
-			}else if(self.bored){
-				img = images.mehTriangle;
-			}else{
-				img = images.yayTriangle;
-			}
+			img = (self.shaking) ? images.sadTriangle : images.yayTriangle;
 		}else{
-			if(self.shaking){
-				img = images.sadSquare;
-			}else if(self.bored){
-				img = images.mehSquare;
-			}else{
-				img = images.yaySquare;
-			}
+			img = (self.shaking) ? images.sadSquare : images.yaySquare;
 		}
+
+		if(self.SHAPIST){
+			ctx.rotate(Math.PI);
+		}
+
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
+
+
 	};
 
 }
@@ -205,6 +215,12 @@ window.reset = function(){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
 				draggables.push(draggable);
+				
+				// EXPERIMENTAL
+				if(Math.random()<1/10){
+					draggable.SHAPIST = true;
+				}
+
 			}
 		}
 	}
@@ -273,7 +289,7 @@ window.writeStats = function(){
 	if(isNaN(avg)) debugger;
 
 	// If stats oversteps, bump back
-	if(STATS.steps>320+STATS.offset){
+	if(STATS.steps>360+STATS.offset){
 		STATS.offset += 120;
 		var tctx = tmp_stats.getContext("2d");
 		tctx.clearRect(0,0,tmp_stats.width,tmp_stats.height);
@@ -285,20 +301,11 @@ window.writeStats = function(){
 	// Graph it
 	stats_ctx.fillStyle = "#cc2727";
 	var x = STATS.steps - STATS.offset;
-	var y = 250 - avg*250;
+	var y = 270 - avg*270;
 	stats_ctx.fillRect(x,y,1,5);
 
 	// Text
-	stats_text.innerHTML = Math.floor(avg*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
-
-	// Button
-	if(START_SIM){
-		document.getElementById("moving").classList.add("moving");
-	}else{
-		document.getElementById("moving").classList.remove("moving");
-	}
+	stats_text.innerHTML = "simulation: "+(START_SIM? "ON" : "OFF")+"<br>steps: "+STATS.steps+"<br>sameness: "+Math.floor(avg*100)+"%";
 
 }
 

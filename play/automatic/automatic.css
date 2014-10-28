@@ -14,7 +14,7 @@ iframe{
 }
 #container{
 	position: relative;
-	width:960px;
+	width:1030px;
 	height:600px;
 }
 #canvas{
@@ -22,9 +22,57 @@ iframe{
 	float:left;
 }
 #stats{
-	width:360px; height:100%;
+	width:400px; height:100%;
 	float:left;
+	margin-left: 20px;
+}
+#stats_text{
+	position: absolute;
+	color:#cc2727;
+	background: #222222;
+	padding: 5px;
+	font-size: 20px;
+}
+#stats_canvas_container{
+	background:url(../img/stats.png);
+	width:400px; height:300px;
+	position:relative; overflow:hidden;
+	margin-bottom: 20px;
 }
 #stats_canvas{
-	background: #000;
+	position: absolute;
+	top:-1px;
+	right:-1px;
 }
+
+.ui{
+	background: url(../img/ui_buttons.png);
+	width:195px;
+	height:52px;
+
+	cursor: pointer;
+	float:left;
+
+	position: relative;
+	top:0px;
+
+	-webkit-transition: top 0.1s linear;
+    -moz-transition: top 0.1s linear;
+    -ms-transition: top 0.1s linear;
+    -o-transition: top 0.1s linear;
+    transition: top 0.1s linear;
+
+}
+.ui:hover{
+	top:-5px;
+}
+
+#reset{ background-position: 0 -104px; }
+#reset:hover{ background-position: 0 -156px; }
+
+#moving{ background-position: 0 -208px; }
+#moving:hover{ background-position: 0 -260px; }
+
+#moving.moving{ background-position: 0 -312px; }
+#moving.moving:hover{ background-position: 0 -364px; }
+

@@ -11,9 +11,18 @@ body{
 	margin:0 auto;
 
 	cursor: pointer;
+
+	position: relative;
+	top:0px;
+
+	-webkit-transition: top 0.1s linear;
+    -moz-transition: top 0.1s linear;
+    -ms-transition: top 0.1s linear;
+    -o-transition: top 0.1s linear;
+    transition: top 0.1s linear;
+
 }
 #reset:hover{
 	background-position: 0 -60px;
-	position: relative;
-	top:-3px;
+	top:-5px;
 }
