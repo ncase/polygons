@@ -220,5 +220,7 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 	function(callback){ window.setTimeout(callback, 1000/60); };
 (function animloop(){
 	requestAnimFrame(animloop);
-	render();
+	if(window.IS_IN_SIGHT){
+		render();
+	}
 })();

@@ -11,69 +11,151 @@
 
 	<!-- Chapter 1: The Rules of Schelling's Model -->
 	<div class="chapter">
+
 		<p><strong>These are the adorable Polygon People.</strong></p>
-		<p>They're 50% Triangles, 50% Squares, and 100% slightly biased against each other.</p>
+		<p>They're 50% Triangles, 50% Squares, and 100% slightly biased.</p>
 		<p>
-			Emphasis on the word slightly. A Polygon would be okay with an even 50/50 split of
-			neighbours of different types, but if less than 33% of their neighbours are like them,
-			they will be unhappy, and want to move somewhere else.
+			Emphasis on the word slightly. Every individual polygon is ok with having a
+			mix of different polygons around them. In fact, they prefer that.
+			A shape is happiest when they're part of a diverse crowd of shapes.
 		</p>
+
 		<p>
-			Keep that in mind. Every single Polygon would be okay with a fully integrated neighbourhood.
-			However, let's see what happens over time...
+			You'd think these polygons would be the paragon of unbiasedness.
+			They like diversity, they prefer diversity, they even like if a slight majority
+			of shapes around them are different from them. In fact, the only problem these
+			polygons have is if an overwhelming majority of shapes around them are unlike them.
+			I mean, they don't run screaming, because they're not shapist or anything,
+			but they do notice, and given the opportunity to move somewhere else, they will.
 		</p>
+
+		<p>
+			So with just that one rule, that if under 1/3rd of a shape's neighbors are like
+			them they'd prefer to move, what happens to a large shape society?
+		</p>
+
+		<p>
+			On the following board, you can move any unhappy shape to a new location.
+			Happy shapes obviously don't want to move, and bored shapes are risk-averse
+			and would also rather stay where they are. The bored shapes would like it if
+			you'd move a differently-shaped polygon into their neighborhood, though!
+		</p>
+
+		<p><strong>Try relocating unhappy shapes until the entire shape society is stable:</strong></p>
 	</div>
 
 	<!-- Playable 1: Manual Solitaire -->
 	<div class="playable">
-		<iframe src="play/manual/manual.html" width="600" height="650"></iframe>
+		<iframe playable src="play/manual/manual.html" width="600" height="650"></iframe>
 	</div>
 
 	<!-- Chapter 2: This Is Not A Fluke -->
 	<div class="chapter"> 
-		<p>And the result... near-complete segregation.</p>
+		<p><strong>And the result... near-complete segregation.</strong></p>
 		<p>
-			This wasn't just a fluke. You can run this process over and over again with different boards,
-			and it will almost always tend towards a highly segregated outcome.
+			This wasn't a fluke. You can run this process over and over again with different boards,
+			and you'll always see an emerging pattern where similar shapes group together.
 		</p>
 		<p>
-			Try it yourself! This next interactive bit automates the Polygons moving around,
-			and measures the average % of a Polygon's neighbours that are the same shape.
-			We'll call this the Sameness %.
-		</p>
-		<p>
-			Because it's random at first, the Sameness % will usually start at around 50%.
-			But let's see what happens, what almost always happens, once they start moving around.
+			Here's a larger simulation, where you can still move shapes by hand, or press a button
+			to let unhappy shapes automatically move towards happier locations. You can also see a
+			graph that measures, on average, what percentage of a polygon's neighbors are like themselves.
 		</p>
 	</div>
 
 	<!-- Playable 2: Automatic Solitaire, with Sameness % -->
-	<!--div class="playable">
-		<iframe src="play/automatic/automatic.html" width="800" height="450"></iframe>
-	</div-->
+	<div class="playable">
+		<iframe playable src="play/automatic/automatic.html" width="1030" height="600"></iframe>
+	</div>
 
 	<!-- Chapter 3: Micromotives, Macrobehaviour -->
 	<div class="chapter">
 		<p>
-			Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah.
-			Blah Blah Blah Blah Blah Blah.
-			Blah Blah Blah Blah Blah Blah Blah.
+			Why does this happen? The shapes individually prefer an integrated shape society,
+			and no shape is individually biased against any other individual shape.
+			So why is it that even when every individual seems like a model citizen,
+			with just a slight preference to move only if they're overwhelmingly surrounded
+			by shapes unlike them, why isn't this enough?
 		</p>
 		<p>
-			Blah Blah Blah Blah Blah Blah Blah Blah.
-			Blah Blah Blah Blah Blah Blah Blah Blah Blah.
+			In the next example, you can change the bias. Polygons are happy as long
+			as the bias% of neighbors, or more, are like themselves. You can even turn
+			the bias all the way down to 0%, so that the shapes are happy to be neighbors
+			with all completely different shapes, with 0% other shapes like them!
+		</p>
+	</div>
+
+	<!-- Playable 3: Automatic Solitaire, change Bias % -->
+	<div class="playable">
+		<iframe playable src="play/automatic/automatic2.html" width="1030" height="600"></iframe>
+	</div>
+
+	<!-- Chapter 3: Micromotives, Macrobehaviour -->
+	<div class="chapter">
+		<p>
+			Notice how much more segregated things get when you increase the bias beyond 1/3.
+			What if shapes were only unhappy if less than half of their neighbors were like them?
+			It might seem reasonable for a shape to prefer not being in the minority!
 		</p>
 		<p>
-			Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah.
-			Blah.
-			Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah.
-			Blah Blah Blah.
+			But starting with a new random board, with 0 bias, things are pretty good!
+			You might think being able to have completely unbiased polygons would fix our segregation problems.
 		</p>
 		<p>
-			Now let's adjust the Bias %.
+			Of course, the real polygon world doesn't start anew with a random shuffling
+			of polygons every day. In the following example, the world starts off stable and segregated,
+			rather than random, but you can still decrease the bias to zero and see what happens.
+		</p>
+	</div>
+
+	<!-- Playable 3: Automatic Solitaire, change Bias % -->
+	<div class="playable">
+		<iframe playable src="play/automatic/automatic3.html" width="1030" height="600"></iframe>
+	</div>
+
+	<!-- Chapter 3: Micromotives, Macrobehaviour -->
+	<div class="chapter">
+		<p>
+			Things don't get better. In the above models, things can only ever stay the same or get worse.
+			Even when every single shape citizen is the definition of unbiased.
+		</p>
+		<p><strong>In a world where bias ever existed, being unbiased isn't enough!</strong><p>
+		<p>
+			We need to expect more of our shapes. But what can they do? 
+		</p>
+		<p>
+			Forcing shapes to bend to the will of a benevolent dictator, and planning a fully integrated society,
+			would be good for the happiness of all in theory, but in practice infringes on the rights of
+			individual shapes who don't want to be forced out of their homes. What we need is a cultural change,
+			one where individuals choose to behave slightly differently than they did before.
+			Changing culture so that individuals have slightly different motivations can make huge changes
+			on the resulting shape society.
+		</p>
+		<p>
+			In the next example, cultural change has introduced a nonconformity bias.
+			Bored shapes are no longer too comfortable to move, but actually feel uncomfortable
+			if there's too many similar shapes nearby!
+		</p>
+	</div>
+
+	<!-- Playable 3: Automatic Solitaire, change Bias % -->
+	<div class="playable">
+		<iframe playable src="play/automatic/automatic4.html" width="1030" height="600"></iframe>
+	</div>
+
+	<!-- Chapter 3: Micromotives, Macrobehaviour -->
+	<div class="chapter">
+		<p>
+			So maybe a horribly segregated shapeland isn't an inevitability.
+		</p>
+		<p>
+			Anyway, if you'd like to explore this further, please do! It's all available under a Creative Commons license, and you can find it on GitHub.
 		</p>
 	</div>
 
 
 </body>
+
+<script src="js/insight.js"></script>
+
 </html>

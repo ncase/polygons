@@ -8,17 +8,19 @@
 	<div id="container">
 		<canvas id="canvas" width="600" height="600"></canvas>
 		<div id="stats">
-			<canvas id="stats_canvas" width="360" height="270"></canvas>
-			<br><br>
-			<span id="stats_text"></span>
-			<br><br>
+
+			<div id="stats_canvas_container">
+				<canvas id="stats_canvas" width="370" height="270"></canvas>
+				<div id="stats_text"></div>
+			</div>
+
 			bias: <span id="bias_text">33%</span>
 			<br>
 			<input id="input_bias" style="width:100%" type="range" min="0" max="1" value="0.33" step="0.01" oninput="changeBias(value)">
 			<br><br>
-			<button onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()">TOGGLE SIMULATION</button>
-			<br>
-			<button onclick="reset()">RESET BOARD</button>
+
+			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
+			<div class="ui" id="reset" onclick="reset()" style="margin-left:9px"></div>
 		</div>
 	</div>
 </body>
