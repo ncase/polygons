@@ -27,6 +27,7 @@ addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
 
 var IS_PICKING_UP = false;
+var lastMouseX, lastMouseY;
 
 function Draggable(x,y){
 	
@@ -47,6 +48,10 @@ function Draggable(x,y){
 		offsetX = Mouse.x-self.x;
 		offsetY = Mouse.y-self.y;
 		self.dragged = true;
+
+		// Dangle
+		self.dangle = 0;
+		self.dangleVel = 0;
 
 		// Draw on top
 		var index = draggables.indexOf(self);
@@ -185,6 +190,16 @@ function Draggable(x,y){
 				}
 			}
 		}
+		
+		// Dangle
+		if(self.dragged){
+			self.dangle += (lastMouseX-Mouse.x)/100;
+			ctx.rotate(-self.dangle);
+			self.dangleVel += self.dangle*(-0.02);
+			self.dangle += self.dangleVel;
+			self.dangle *= 0.9;
+		}
+
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
 	};
@@ -230,6 +245,39 @@ function render(){
 		draggables[i].draw();
 	}
 
+	// Mouse
+	lastMouseX = Mouse.x;
+	lastMouseY = Mouse.y;
+
+	// Done?
+	if(isDone()){
+		doneBuffer--;
+		if(doneBuffer==0){
+			doneAnimFrame = 30;
+			console.log("DONE");
+		}
+	}else{
+		doneBuffer = 30;
+	}
+	if(doneAnimFrame>0){
+		doneAnimFrame--;
+		var opacity = ((doneAnimFrame%15)/15)*0.2;
+		canvas.style.background = "rgba(255,255,255,"+opacity+")";
+	}else{
+		canvas.style.background = "none";
+	}
+
+}
+
+var doneAnimFrame = 0;
+var doneBuffer = 30;
+function isDone(){
+	if(Mouse.pressed) return false;
+	for(var i=0;i<draggables.length;i++){
+		var d = draggables[i];
+		if(d.shaking) return false;
+	}
+	return true;
 }
 
 ////////////////////

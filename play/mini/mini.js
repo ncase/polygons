@@ -35,6 +35,8 @@ addAsset("sadSquare","../img/sad_square.png");
 
 var IS_PICKING_UP = false;
 
+var lastMouseX, lastMouseY;
+
 function Draggable(x,y){
 	
 	var self = this;
@@ -54,6 +56,10 @@ function Draggable(x,y){
 		offsetX = Mouse.x-self.x;
 		offsetY = Mouse.y-self.y;
 		self.dragged = true;
+
+		// Dangle
+		self.dangle = 0;
+		self.dangleVel = 0;
 
 		// Draw on top
 		var index = draggables.indexOf(self);
@@ -199,6 +205,22 @@ function Draggable(x,y){
 				}
 			}
 		}
+
+		// Dangle
+		if(self.dragged){
+			self.dangle += (lastMouseX-Mouse.x)/100;
+			ctx.rotate(-self.dangle);
+			self.dangleVel += self.dangle*(-0.02);
+			self.dangle += self.dangleVel;
+			self.dangle *= 0.9;
+		}
+
+		/**
+		ANGER
+		ctx.translate(Math.random()*4-2,Math.random()*4-2);
+		ctx.rotate(Math.random()*0.2-0.1);
+		**/
+
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
 	};
@@ -234,11 +256,6 @@ var doneBuffer = 60;
 function render(){
 
 	if(assetsLeft>0) return;
-	
-	// Is Stepping?
-	if(START_SIM){
-		step();
-	}
 
 	// Draw
 	Mouse.isOverDraggable = IS_PICKING_UP;
@@ -260,16 +277,9 @@ function render(){
 		draggables[i].draw();
 	}
 
-	// Done stepping?
-	if(isDone()){
-		doneBuffer--;
-		if(doneBuffer==0){
-			START_SIM = false;
-			console.log("DONE");
-		}
-	}else if(START_SIM){
-		doneBuffer = 60;
-	}
+	// Mouse
+	lastMouseX = Mouse.x;
+	lastMouseY = Mouse.y;
 
 }
 function isDone(){

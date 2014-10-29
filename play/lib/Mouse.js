@@ -17,21 +17,22 @@
 	Mouse.isOverDraggable = false;
 	function updateCursor(){
 		if(Mouse.isOverDraggable){
+			canvas.style.cursor = "";
 			if(Mouse.pressed){
-				canvas.style.cursor = "-webkit-grabbing";
-				if(canvas.style.cursor=="") canvas.style.cursor="-moz-grabbing";
+				canvas.style.cursor = "-moz-grabbing";
+				if(canvas.style.cursor=="") canvas.style.cursor="-webkit-grabbing";
 				if(canvas.style.cursor=="") canvas.style.cursor="-ms-grabbing";
 				if(canvas.style.cursor=="") canvas.style.cursor="-o-grabbing";
 				if(canvas.style.cursor=="") canvas.style.cursor="grabbing";
 			}else{
-				canvas.style.cursor = "-webkit-grab";
-				if(canvas.style.cursor=="") canvas.style.cursor="-moz-grab";
+				canvas.style.cursor = "-moz-grab";
+				if(canvas.style.cursor=="") canvas.style.cursor="-webkit-grab";
 				if(canvas.style.cursor=="") canvas.style.cursor="-ms-grab";
 				if(canvas.style.cursor=="") canvas.style.cursor="-o-grab";
 				if(canvas.style.cursor=="") canvas.style.cursor="grab";
 			}
 		}else{
-			canvas.style.cursor = "default";
+			canvas.style.cursor = "";
 		}
 	}
 	
