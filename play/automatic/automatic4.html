@@ -14,14 +14,16 @@
 				<div id="stats_text"></div>
 			</div>
 
-			bias: <span id="bias_text">33%</span>
+			i'll move if <span style="color:#cc2727">less than <span id="bias_text">33%</span></span> of my neighbours are like me
 			<br>
 			<input id="input_bias" style="width:100%" type="range" min="0" max="1" value="0.1" step="0.01" oninput="changeBias(value)">
 			
+			<br><br>
+			or if <span style="color:#cc2727">more than <span id="nonconform_text">100%</span></span> of my neighbours are like me
 			<br>
-			nonconform: <span id="nonconform_text">100%</span>
+			<input id="input_nonconform" style="width:100%" type="range" min="0" max="1" value="0.9" step="0.01" oninput="changeNonconform(value)">
 			<br>
-			<input id="input_nonconform" style="width:100%" type="range" min="0" max="1" value="1.0" step="0.1" oninput="changeNonconform(value)">
+			<br>
 
 			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
 			<div class="ui" id="reset" onclick="reset()" style="margin-left:9px"></div>
@@ -35,3 +37,6 @@
 <script src="automatic_bias.js"></script>
 <script src="automatic_start_segregated.js"></script>
 <script src="automatic_nonconform.js"></script>
+<script>
+doneBuffer=-1;
+</script>

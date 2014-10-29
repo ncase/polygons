@@ -25,6 +25,8 @@ iframe{
 	width:400px; height:100%;
 	float:left;
 	margin-left: 20px;
+	font-size: 16px;
+	text-align: center;
 }
 #stats_text{
 	position: absolute;

@@ -31,6 +31,7 @@ addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
 
 var IS_PICKING_UP = false;
+var lastMouseX, lastMouseY;
 
 function Draggable(x,y){
 	
@@ -51,6 +52,10 @@ function Draggable(x,y){
 		offsetX = Mouse.x-self.x;
 		offsetY = Mouse.y-self.y;
 		self.dragged = true;
+
+		// Dangle
+		self.dangle = 0;
+		self.dangleVel = 0;
 
 		// Draw on top
 		var index = draggables.indexOf(self);
@@ -127,6 +132,9 @@ function Draggable(x,y){
 			if(self.sameness>0.99){
 				self.bored = true;
 			}
+			if(neighbours==0){
+				self.shaking = false;
+			}
 		}
 
 		// Dragging
@@ -184,6 +192,16 @@ function Draggable(x,y){
 				img = images.yaySquare;
 			}
 		}
+
+		// Dangle
+		if(self.dragged){
+			self.dangle += (lastMouseX-Mouse.x)/100;
+			ctx.rotate(-self.dangle);
+			self.dangleVel += self.dangle*(-0.02);
+			self.dangle += self.dangleVel;
+			self.dangle *= 0.9;
+		}
+
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
 	};
@@ -207,7 +225,7 @@ window.reset = function(){
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
-			if(Math.random()<0.9){
+			if(Math.random()<0.85){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
 				draggables.push(draggable);
@@ -223,7 +241,6 @@ window.reset = function(){
 
 }
 
-var doneBuffer = 60;
 function render(){
 
 	if(assetsLeft>0) return;
@@ -257,6 +274,7 @@ function render(){
 	if(isDone()){
 		doneBuffer--;
 		if(doneBuffer==0){
+			doneAnimFrame = 30;
 			START_SIM = false;
 			console.log("DONE");
 			writeStats();
@@ -264,12 +282,23 @@ function render(){
 	}else if(START_SIM){
 		
 		STATS.steps++;
-		doneBuffer = 60;
+		doneBuffer = 30;
 
 		// Write stats
 		writeStats();
 
 	}
+	if(doneAnimFrame>0){
+		doneAnimFrame--;
+		var opacity = ((doneAnimFrame%15)/15)*0.2;
+		canvas.style.background = "rgba(255,255,255,"+opacity+")";
+	}else{
+		canvas.style.background = "none";
+	}
+
+	// Mouse
+	lastMouseX = Mouse.x;
+	lastMouseY = Mouse.y;
 
 }
 var stats_text = document.getElementById("stats_text");
@@ -302,7 +331,7 @@ window.writeStats = function(){
 	// Graph it
 	stats_ctx.fillStyle = "#cc2727";
 	var x = STATS.steps - STATS.offset;
-	var y = 250 - avg*250;
+	var y = 250 - avg*250 + 10;
 	stats_ctx.fillRect(x,y,1,5);
 
 	// Text
@@ -319,7 +348,10 @@ window.writeStats = function(){
 
 }
 
+var doneAnimFrame = 0;
+var doneBuffer = 30;
 function isDone(){
+	if(Mouse.pressed) return false;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		if(d.shaking) return false;
