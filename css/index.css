@@ -21,3 +21,8 @@ body{
 	margin: 25px auto;
 	border: none;
 }
+iframe[embedded]{
+	overflow: hidden;
+	border: none;
+	margin:40px;
+}
