@@ -78,3 +78,6 @@ iframe{
 #moving.moving{ background-position: 0 -312px; }
 #moving.moving:hover{ background-position: 0 -364px; }
 
+span.highlight{
+	color:#cc2727;
+}

@@ -1,8 +1,13 @@
 <!doctype html>
 <html>
 <head>
-	<title>Automatic Simulation - Nonconformity</title>
+	<title>Automatic Simulation - SANDBOX</title>
 	<link href="automatic.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+	input{
+		margin-bottom: 15px;
+	}
+	</style>
 </head>
 <body>
 	<div id="container">
@@ -18,15 +23,29 @@
 			<br>
 			<input id="input_bias" style="width:100%" type="range" min="0" max="1" value="0.1" step="0.01" oninput="changeBias(value)">
 			
-			<br><br>
+			<br>
 			or if <span class="highlight">more than <span id="nonconform_text">100%</span></span> of my neighbours are like me
 			<br>
 			<input id="input_nonconform" style="width:100%" type="range" min="0" max="1" value="0.9" step="0.01" oninput="changeNonconform(value)">
+			
 			<br>
+			the board has <span class="highlight">
+			<span id="ratio_text_triangles">25%</span> triangles</span>
+			and
+			<span class="highlight"><span id="ratio_text_squares">75%</span> squares</span>
 			<br>
+			<input id="input_ratio" style="width:100%" type="range" min="0" max="1" value="0.5" step="0.01" oninput="changeRatio(value)" onchange="reset()">
+
+			<br>
+			the board has <span class="highlight"><span id="empty_text">20%</span></span> empty slots
+			<br>
+			<input id="input_empty" style="width:100%" type="range" min="0" max="1" value="0.2" step="0.01" oninput="changeEmpty(value)" onchange="reset()">
+
+			<br><br>
 
 			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
 			<div class="ui" id="reset" onclick="reset()" style="margin-left:9px"></div>
+
 		</div>
 	</div>
 </body>
@@ -35,8 +54,8 @@
 <script src="../lib/Mouse.js"></script>
 <script src="automatic.js"></script>
 <script src="automatic_bias.js"></script>
-<script src="automatic_start_segregated.js"></script>
 <script src="automatic_nonconform.js"></script>
+<script src="automatic_sandbox.js"></script>
 <script>
-doneBuffer=-1;
+	window.PICK_UP_ANYONE = true;
 </script>

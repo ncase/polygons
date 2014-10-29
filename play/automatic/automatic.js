@@ -11,6 +11,13 @@ var PEEP_SIZE = 30;
 var GRID_SIZE = 20;
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 
+
+
+window.RATIO_TRIANGLES = 0.5;
+window.RATIO_SQUARES = 0.5;
+window.EMPTINESS = 0.2;
+
+
 var assetsLeft = 0;
 var onImageLoaded = function(){
 	assetsLeft--;
@@ -139,7 +146,7 @@ function Draggable(x,y){
 
 		// Dragging
 		if(!self.dragged){
-			if(self.shaking && Mouse.pressed && !lastPressed){
+			if((self.shaking||window.PICK_UP_ANYONE) && Mouse.pressed && !lastPressed){
 				var dx = Mouse.x-self.x;
 				var dy = Mouse.y-self.y;
 				if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
@@ -225,9 +232,9 @@ window.reset = function(){
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
-			if(Math.random()<0.85){
+			if(Math.random()<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
+				draggable.color = (Math.random()<window.RATIO_TRIANGLES) ? "triangle" : "square";
 				draggables.push(draggable);
 			}
 		}
@@ -241,7 +248,7 @@ window.reset = function(){
 
 }
 
-function render(){
+window.render = function(){
 
 	if(assetsLeft>0) return;
 	
@@ -257,7 +264,7 @@ function render(){
 		var d = draggables[i];
 		d.update();
 
-		if(d.shaking){
+		if(d.shaking || window.PICK_UP_ANYONE){
 			var dx = Mouse.x-d.x;
 			var dy = Mouse.y-d.y;
 			if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
@@ -308,6 +315,8 @@ tmp_stats.width = stats_canvas.width;
 tmp_stats.height = stats_canvas.height;
 
 window.writeStats = function(){
+
+	if(draggables.length==0) return;
 
 	// Average Sameness Ratio
 	var total = 0;
@@ -402,6 +411,7 @@ function step(){
 
 	// Go to a random empty spot
 	var spot = empties[Math.floor(Math.random()*empties.length)];
+	if(!spot) return;
 	shaker.gotoX = spot.x;
 	shaker.gotoY = spot.y;
 
