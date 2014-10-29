@@ -1,11 +1,6 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var stats_canvas = document.getElementById("stats_canvas");
-var stats_ctx = stats_canvas.getContext("2d");
-
-var NONCONFORM = 1.00;
-var BIAS = 0.33;
 var TILE_SIZE = 30;
 var PEEP_SIZE = 30;
 var GRID_SIZE = 20;
@@ -24,9 +19,11 @@ function addAsset(name,src){
 	images[name].src = src;
 }
 addAsset("yayTriangle","../img/yay_triangle.png");
+addAsset("yayTriangleBlink","../img/yay_triangle_blink.png");
 addAsset("mehTriangle","../img/meh_triangle.png");
 addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
+addAsset("yaySquareBlink","../img/yay_square_blink.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
 
@@ -76,10 +73,6 @@ function Draggable(x,y){
 			self.gotoX = pickupX;
 			self.gotoY = pickupY;
 		}else{
-			
-			STATS.steps++;
-			writeStats();
-
 			self.gotoX = potentialX;
 			self.gotoY = potentialY;
 		}
@@ -94,7 +87,6 @@ function Draggable(x,y){
 		// Shakiness?
 		self.shaking = false;
 		self.bored = false;
-
 		if(!self.dragged){
 			var neighbours = 0;
 			var same = 0;
@@ -110,22 +102,17 @@ function Draggable(x,y){
 					}
 				}
 			}
-			if(neighbours>0){
-				self.sameness = (same/neighbours);
-			}else{
-				self.sameness = 1;
-			}
-			if(self.sameness<BIAS || self.sameness>NONCONFORM){
+			if(neighbours>0 && (same/neighbours)<0.33){
 				self.shaking = true;
 			}
-			if(self.sameness>0.99){
+			if(neighbours==0 || (same/neighbours)>0.99){
 				self.bored = true;
 			}
 		}
 
 		// Dragging
 		if(!self.dragged){
-			if(self.shaking && Mouse.pressed && !lastPressed){
+			if(/*self.shaking &&*/ Mouse.pressed && !lastPressed){
 				var dx = Mouse.x-self.x;
 				var dy = Mouse.y-self.y;
 				if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
@@ -148,15 +135,20 @@ function Draggable(x,y){
 	};
 
 	self.frame = 0;
+	self.blinking=0;
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
-		
 		if(self.shaking){
 			self.frame+=0.07;
 			ctx.translate(0,20);
 			ctx.rotate(Math.sin(self.frame-(self.x+self.y)/200)*Math.PI*0.05);
 			ctx.translate(0,-20);
+		}
+
+		// Blinking
+		if(Math.random()<0.01){
+			self.blinking=10;
 		}
 
 		// Draw thing
@@ -167,7 +159,12 @@ function Draggable(x,y){
 			}else if(self.bored){
 				img = images.mehTriangle;
 			}else{
-				img = images.yayTriangle;
+				if(self.blinking>0){
+					self.blinking--;
+					img = images.yayTriangleBlink;
+				}else{
+					img = images.yayTriangle;
+				}
 			}
 		}else{
 			if(self.shaking){
@@ -175,7 +172,12 @@ function Draggable(x,y){
 			}else if(self.bored){
 				img = images.mehSquare;
 			}else{
-				img = images.yaySquare;
+				if(self.blinking>0){
+					self.blinking--;
+					img = images.yaySquareBlink;
+				}else{
+					img = images.yaySquare;
+				}
 			}
 		}
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
@@ -184,50 +186,24 @@ function Draggable(x,y){
 
 }
 
-window.START_SIM = false;
-
 var draggables;
-var STATS;
-window.reset = function(){
-
-	STATS = {
-		steps:0,
-		offset:0
-	};
-	START_SIM = false;
-
-	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
-
+function reset(){
 	draggables = [];
-	for(var x=0;x<GRID_SIZE;x++){
-		for(var y=0;y<GRID_SIZE;y++){
-			if(Math.random()<0.9){
+	for(var x=0;x<20;x++){
+		for(var y=0;y<20;y++){
+			if(x<16&&y<16) continue;
+			//if(Math.random()<1){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
 				draggables.push(draggable);
-			}
+			//}
 		}
 	}
-
-	// Write stats for first time
-	for(var i=0;i<draggables.length;i++){
-		draggables[i].update();
-	}
-	writeStats();
-
 }
+reset();
 
-var doneBuffer = 60;
 function render(){
-
 	if(assetsLeft>0) return;
-	
-	// Is Stepping?
-	if(START_SIM){
-		step();
-	}
-
-	// Draw
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].update();
@@ -235,127 +211,6 @@ function render(){
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].draw();
 	}
-
-	// Done stepping?
-	if(isDone()){
-		doneBuffer--;
-		if(doneBuffer==0){
-			START_SIM = false;
-			console.log("DONE");
-			writeStats();
-		}
-	}else if(START_SIM){
-		
-		STATS.steps++;
-		doneBuffer = 60;
-
-		// Write stats
-		writeStats();
-
-	}
-
-}
-var stats_text = document.getElementById("stats_text");
-
-var tmp_stats = document.createElement("canvas");
-tmp_stats.width = stats_canvas.width;
-tmp_stats.height = stats_canvas.height;
-
-window.writeStats = function(){
-
-	// Average Sameness Ratio
-	var total = 0;
-	for(var i=0;i<draggables.length;i++){
-		var d = draggables[i];
-		total += d.sameness || 0;
-	}
-	var avg = total/draggables.length;
-	if(isNaN(avg)) debugger;
-
-	// If stats oversteps, bump back
-	if(STATS.steps>320+STATS.offset){
-		STATS.offset += 120;
-		var tctx = tmp_stats.getContext("2d");
-		tctx.clearRect(0,0,tmp_stats.width,tmp_stats.height);
-		tctx.drawImage(stats_canvas,0,0);
-		stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
-		stats_ctx.drawImage(tmp_stats,-119,0);
-	}
-
-	// Graph it
-	stats_ctx.fillStyle = "#cc2727";
-	var x = STATS.steps - STATS.offset;
-	var y = 250 - avg*250;
-	stats_ctx.fillRect(x,y,1,5);
-
-	// Text
-	stats_text.innerHTML = Math.floor(avg*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
-
-	// Button
-	if(START_SIM){
-		document.getElementById("moving").classList.add("moving");
-	}else{
-		document.getElementById("moving").classList.remove("moving");
-	}
-
-}
-
-function isDone(){
-	for(var i=0;i<draggables.length;i++){
-		var d = draggables[i];
-		if(d.shaking) return false;
-	}
-	return true;
-}
-
-function step(){
-
-	// Get all shakers
-	var shaking = [];
-	for(var i=0;i<draggables.length;i++){
-		var d = draggables[i];
-		if(d.shaking) shaking.push(d);
-	}
-
-	// Pick a random shaker
-	if(shaking.length==0) return;
-	var shaker = shaking[Math.floor(Math.random()*shaking.length)];
-
-	// Go through every spot, get all empty ones
-	var empties = [];
-	for(var x=0;x<GRID_SIZE;x++){
-		for(var y=0;y<GRID_SIZE;y++){
-
-			var spot = {
-				x: (x+0.5)*TILE_SIZE,
-				y: (y+0.5)*TILE_SIZE
-			}
-
-			var spotTaken = false;
-			for(var i=0;i<draggables.length;i++){
-				var d = draggables[i];
-				var dx = d.gotoX-spot.x;
-				var dy = d.gotoY-spot.y;
-				if(dx*dx+dy*dy<10){
-					spotTaken=true;
-					break;
-				}
-			}
-
-			if(!spotTaken){
-				empties.push(spot);
-			}
-
-		}
-	}
-
-	// Go to a random empty spot
-	var spot = empties[Math.floor(Math.random()*empties.length)];
-	shaker.gotoX = spot.x;
-	shaker.gotoY = spot.y;
-
 }
 
 ////////////////////
@@ -373,7 +228,3 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 })();
 
 window.IS_IN_SIGHT = true;
-
-window.onload=function(){
-	reset();
-}

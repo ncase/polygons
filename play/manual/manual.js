@@ -224,3 +224,4 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 		render();
 	}
 })();
+window.IS_IN_SIGHT = true;

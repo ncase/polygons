@@ -1,0 +1,28 @@
+body{
+	margin:0;
+	overflow: hidden;
+	width:550px;
+	background: #222;
+}
+#reset{
+	background: url(../img/new_board.png);
+	width:225px;
+	height:60px;
+	margin:0 auto;
+
+	cursor: pointer;
+
+	position: relative;
+	top:0px;
+
+	-webkit-transition: top 0.1s linear;
+    -moz-transition: top 0.1s linear;
+    -ms-transition: top 0.1s linear;
+    -o-transition: top 0.1s linear;
+    transition: top 0.1s linear;
+
+}
+#reset:hover{
+	background-position: 0 -60px;
+	top:-5px;
+}
