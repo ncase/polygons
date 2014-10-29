@@ -12,8 +12,31 @@
 
 	// Event Handling
 	var onMouseMove,onTouchMove;
+
+	// Cursor
+	Mouse.isOverDraggable = false;
+	function updateCursor(){
+		if(Mouse.isOverDraggable){
+			if(Mouse.pressed){
+				canvas.style.cursor = "-webkit-grabbing";
+				if(canvas.style.cursor=="") canvas.style.cursor="-moz-grabbing";
+				if(canvas.style.cursor=="") canvas.style.cursor="-ms-grabbing";
+				if(canvas.style.cursor=="") canvas.style.cursor="-o-grabbing";
+				if(canvas.style.cursor=="") canvas.style.cursor="grabbing";
+			}else{
+				canvas.style.cursor = "-webkit-grab";
+				if(canvas.style.cursor=="") canvas.style.cursor="-moz-grab";
+				if(canvas.style.cursor=="") canvas.style.cursor="-ms-grab";
+				if(canvas.style.cursor=="") canvas.style.cursor="-o-grab";
+				if(canvas.style.cursor=="") canvas.style.cursor="grab";
+			}
+		}else{
+			canvas.style.cursor = "default";
+		}
+	}
 	
 	canvas.addEventListener("mousedown",function(event){
+		updateCursor();
 	    Mouse.pressed = true;
 	    onMouseMove(event);
 	    event.preventDefault();
@@ -21,16 +44,19 @@
 	},false);
 
 	canvas.addEventListener("mouseup",function(event){
+		updateCursor();
 	    Mouse.pressed = false;
 	    event.preventDefault();
 	    event.stopPropagation();
 	},false);
 
 	canvas.addEventListener("mousemove",onMouseMove = function(event){
+		updateCursor();
 		Mouse.x = event.pageX;
 		Mouse.y = event.pageY;
 		event.preventDefault();
 	    event.stopPropagation();
+
 	},false);
 
 	canvas.addEventListener("touchstart",function(event){

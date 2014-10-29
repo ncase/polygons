@@ -30,6 +30,8 @@ addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
 
+var IS_PICKING_UP = false;
+
 function Draggable(x,y){
 	
 	var self = this;
@@ -41,6 +43,8 @@ function Draggable(x,y){
 	var offsetX, offsetY;
 	var pickupX, pickupY;
 	self.pickup = function(){
+
+		IS_PICKING_UP = true;
 
 		pickupX = (Math.floor(self.x/TILE_SIZE)+0.5)*TILE_SIZE;
 		pickupY = (Math.floor(self.y/TILE_SIZE)+0.5)*TILE_SIZE;
@@ -56,6 +60,8 @@ function Draggable(x,y){
 	};
 
 	self.drop = function(){
+
+		IS_PICKING_UP = false;
 
 		var potentialX = (Math.floor(Mouse.x/TILE_SIZE)+0.5)*TILE_SIZE;
 		var potentialY = (Math.floor(Mouse.y/TILE_SIZE)+0.5)*TILE_SIZE;
@@ -228,9 +234,20 @@ function render(){
 	}
 
 	// Draw
+	Mouse.isOverDraggable = IS_PICKING_UP;
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	for(var i=0;i<draggables.length;i++){
-		draggables[i].update();
+		var d = draggables[i];
+		d.update();
+
+		if(d.shaking){
+			var dx = Mouse.x-d.x;
+			var dy = Mouse.y-d.y;
+			if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
+				Mouse.isOverDraggable = true;
+			}
+		}
+
 	}
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].draw();
