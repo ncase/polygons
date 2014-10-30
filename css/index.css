@@ -1,12 +1,43 @@
 body{
+
 	margin:0;
 	background: #eee;
 
 	font-family: sans-serif;
 	font-size: 1.25em;
 	font-weight: 100;
+
+	min-width:1040px;
 	
 }
+
+a{
+	color: #999;
+}
+a:hover{
+	color: #ddd;
+}
+
+#intro_container{
+	width:100%; height:550px;
+	overflow: hidden;
+	position: relative;
+	background: #000;
+}
+#intro{
+	position: absolute;
+	width:0; height:0;
+	margin: auto;
+	top:0; bottom:0; left:0; right:0;
+}
+#intro > #intro_background{
+	display: block;
+	position: absolute;
+	left:-640px; top:-275px;
+	width:1280px; height:550px;
+	border: none;
+}
+
 .chapter{
 	margin: 50px auto;
 	width:800px;
