@@ -68,6 +68,9 @@ iframe{
 .ui:hover{
 	top:-5px;
 }
+.ui:active{
+	top:3px;
+}
 
 #reset{ background-position: 0 -104px; }
 #reset:hover{ background-position: 0 -156px; }

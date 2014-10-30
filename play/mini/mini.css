@@ -6,14 +6,38 @@ body{
 	font-family: sans-serif;
 }
 #reset{
-	width:115px;
-	color: #888;
+	padding:5px;
+	background:#aaa;
+	width:80px;
+	border-radius: 5px;
+	color: #fff;
 	text-align: center;
 	margin: 5px auto;
+	
 	position: relative;
+	top:0;
+
 	cursor: pointer;
+	border-bottom: 2px solid #888;
+
+	-webkit-transition: top 0.1s linear;
+    -moz-transition: top 0.1s linear;
+    -ms-transition: top 0.1s linear;
+    -o-transition: top 0.1s linear;
+    transition: top 0.1s linear;
+
+    -webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;        
+
 }
 #reset:hover{
-	color: #aaa;
-	top:-1px;
+	background:#bbb;
+	top:-2px;
+}
+#reset:active{
+	background:#999;
+	top:2px;
 }

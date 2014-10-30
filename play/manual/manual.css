@@ -26,3 +26,6 @@ body{
 	background-position: 0 -60px;
 	top:-5px;
 }
+#reset:active{
+	top:3px;
+}
