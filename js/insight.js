@@ -19,3 +19,7 @@ window.onscroll = function(){
 
 intro_background.focus();
 intro_background.contentWindow.focus();
+
+window.onload = function(){
+	window.onscroll();
+};

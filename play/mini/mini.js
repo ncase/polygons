@@ -4,12 +4,6 @@ var ctx = canvas.getContext("2d");
 var NONCONFORM = 1.00;
 var BIAS = 0.33;
 
-var TILE_SIZE = 80;
-var PEEP_SIZE = 80;
-
-var GRID_SIZE_WIDTH = 3;
-var GRID_SIZE_HEIGHT = 3;
-
 var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
 
 var assetsLeft = 0;
@@ -230,27 +224,6 @@ function Draggable(x,y){
 window.START_SIM = false;
 
 var draggables;
-/*window.reset = function(){
-
-	START_SIM = false;
-
-	draggables = [];
-	for(var x=0;x<GRID_SIZE_WIDTH;x++){
-		for(var y=0;y<GRID_SIZE_HEIGHT;y++){
-			if(Math.random()<0.9){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
-				draggables.push(draggable);
-			}
-		}
-	}
-
-	// Write stats for first time
-	for(var i=0;i<draggables.length;i++){
-		draggables[i].update();
-	}
-
-}*/
 
 var doneBuffer = 60;
 function render(){

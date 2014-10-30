@@ -1,0 +1,19 @@
+body{
+	margin:0;
+
+	font-size: 20px;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+#reset{
+	width:115px;
+	color: #888;
+	text-align: center;
+	margin: 5px auto;
+	position: relative;
+	cursor: pointer;
+}
+#reset:hover{
+	color: #aaa;
+	top:-1px;
+}

@@ -30,7 +30,7 @@ function Swinger(){
 		var dy = Mouse.y - (self.y+250+window.SCROLL*0.5);
 		var dist = Math.sqrt(dx*dx+dy*dy);
 
-		self.swing += 0.02;
+		self.swing += 0.05;
 		if(dist<300){
 			var t = (300-dist)/300;
 			self.swing += 0.3 * t;
