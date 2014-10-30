@@ -54,8 +54,14 @@ function Draggable(x,y){
 
 	self.drop = function(){
 
-		var potentialX = (Math.floor(Mouse.x/TILE_SIZE)+0.5)*TILE_SIZE;
-		var potentialY = (Math.floor(Mouse.y/TILE_SIZE)+0.5)*TILE_SIZE;
+		var px = Math.floor(Mouse.x/TILE_SIZE);
+		var py = Math.floor(Mouse.y/TILE_SIZE);
+		if(px<0) px=0;
+		if(px>=GRID_SIZE) px=GRID_SIZE-1;
+		if(py<0) py=0;
+		if(py>=GRID_SIZE) py=GRID_SIZE-1;
+		var potentialX = (px+0.5)*TILE_SIZE;
+		var potentialY = (py+0.5)*TILE_SIZE;
 
 		var spotTaken = false;
 		for(var i=0;i<draggables.length;i++){
