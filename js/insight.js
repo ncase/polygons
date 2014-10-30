@@ -1,6 +1,7 @@
 var playables = document.querySelectorAll("iframe[playable]");
 
 var intro_background = document.getElementById("intro_background");
+var outro_background = document.getElementById("outro_background");
 
 window.onscroll = function(){
 
@@ -14,6 +15,7 @@ window.onscroll = function(){
 
 	// HEADER
 	intro_background.contentWindow.SCROLL = scrollY;
+	outro_background.contentWindow.SCROLL = document.body.clientHeight-(scrollY+innerHeight);
 
 };
 

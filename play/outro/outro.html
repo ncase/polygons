@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+	body{
+		margin:0;
+		font-family: sans-serif;
+		font-weight: 100;
+	}
+	a{
+	color: #999;
+	}
+	a:hover{
+		color: #ddd;
+	}
+	#intro{
+		width:1280px; height:550px; background:#000; position:relative; overflow:hidden
+	}
+	#intro > #intro_shading{
+		position: absolute;
+		background:url(intro_banner.png);
+		width:1280px; height:550px;
+	}
+	#intro > #intro_text{
+		color: #555;
+		text-align: center;
+		width: 500px;
+		font-size: 30px;
+		font-weight: 100;
+		position: absolute;
+		width:100%;
+		top: 210px;
+		letter-spacing: 2px;
+	}
+	</style>
+</head>
+<body>
+	<div id="intro">
+		<canvas id="canvas" width="1280" height="300" style="position:absolute;bottom:0"></canvas>
+		<div id="intro_shading"></div>
+		<div id="intro_text">social media &amp; creative commons zero</div>
+	</div>
+</body>
+</html>
+<script src="MouseBlah.js"></script>
+<script src="outro.js"></script>

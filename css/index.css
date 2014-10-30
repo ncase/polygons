@@ -18,19 +18,19 @@ a:hover{
 	color: #ddd;
 }
 
-#intro_container{
+#intro_container, #outro_container{
 	width:100%; height:550px;
 	overflow: hidden;
 	position: relative;
 	background: #000;
 }
-#intro{
+#intro, #outro{
 	position: absolute;
 	width:0; height:0;
 	margin: auto;
 	top:0; bottom:0; left:0; right:0;
 }
-#intro > #intro_background{
+#intro > #intro_background, #outro > #outro_background{
 	display: block;
 	position: absolute;
 	left:-640px; top:-275px;
