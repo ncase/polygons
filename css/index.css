@@ -6,6 +6,7 @@ body{
 	font-family: sans-serif;
 	font-size: 22px;
 	font-weight: 100;
+	line-height: 30px;
 
 	min-width:1040px;
 	
@@ -56,4 +57,11 @@ iframe[embedded]{
 	overflow: hidden;
 	border: none;
 	margin:40px;
+}
+
+#references{
+	width: 100%;
+	background: #222;
+	overflow: hidden;
+	color:#eee;
 }

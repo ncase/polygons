@@ -161,12 +161,12 @@ function SpecialDraggable(x,y){
 		ctx.save();
 		ctx.translate(self.x,self.y);
 		
-		//if(self.shaking){
+		if(!IS_PICKING_UP){
 			self.frame+=0.07;
 			ctx.translate(0,20);
 			ctx.rotate(Math.sin(self.frame-(self.x+self.y)/200)*Math.PI*0.05);
 			ctx.translate(0,-20);
-		//}
+		}
 
 		// Blinking
 		if(Math.random()<0.01){
