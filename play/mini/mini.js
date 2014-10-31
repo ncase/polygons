@@ -276,8 +276,8 @@ function render(){
 	}
 	if(doneAnimFrame>0){
 		doneAnimFrame--;
-		var opacity = ((doneAnimFrame%15)/15)*0.2;
-		canvas.style.background = "rgba(150,150,150,"+opacity+")";
+		var opacity = ((doneAnimFrame%15)/15);
+		canvas.style.background = "rgba(255,255,255,"+opacity+")";
 	}else{
 		canvas.style.background = "none";
 	}
@@ -287,6 +287,7 @@ function render(){
 var doneAnimFrame = 0;
 var doneBuffer = 10;
 function isDone(){
+	if(IS_PICKING_UP) return false;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		if(d.shaking) return false;

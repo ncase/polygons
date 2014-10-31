@@ -37,10 +37,10 @@ window.showEasterEgg = function(id){
 	if(thing.getAttribute("show")) return;
 
 	var pos = parseInt(thing.style.left);
-	thing.style.left = (pos+800)+"px";
+	thing.style.left = (pos+window.innerWidth)+"px";
 	thing.setAttribute("show",true);
 	setTimeout(function(){
 		thing.style.left = (pos)+"px";
-	},600);
+	},500);
 
 };
