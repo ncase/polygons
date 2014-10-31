@@ -231,7 +231,6 @@ window.START_SIM = false;
 
 var draggables;
 
-var doneBuffer = 60;
 function render(){
 
 	if(assetsLeft>0) return;
@@ -260,7 +259,33 @@ function render(){
 	lastMouseX = Mouse.x;
 	lastMouseY = Mouse.y;
 
+	// Done?
+	if(isDone()){
+		doneBuffer--;
+		if(doneBuffer==0){
+			doneAnimFrame = 30;
+			console.log("DONE");
+			
+			if(window.SOLVE_MESSAGE){
+				window.top.showEasterEgg(window.SOLVE_MESSAGE);
+			}
+
+		}
+	}else{
+		doneBuffer = 30;
+	}
+	if(doneAnimFrame>0){
+		doneAnimFrame--;
+		var opacity = ((doneAnimFrame%15)/15)*0.2;
+		canvas.style.background = "rgba(150,150,150,"+opacity+")";
+	}else{
+		canvas.style.background = "none";
+	}
+
 }
+
+var doneAnimFrame = 0;
+var doneBuffer = 10;
 function isDone(){
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];

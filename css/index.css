@@ -9,9 +9,9 @@ body{
 	line-height: 30px;
 
 	min-width:1040px;
-	
-	background-image: url(../sketches/shapist0.png);
 	background-repeat: no-repeat;
+
+	overflow-x:hidden;
 
 }
 
@@ -76,4 +76,54 @@ iframe[embedded]{
 
 .instruction{
 	text-align:center; font-weight:bold; font-size:25px
+}
+
+.easter_egg{
+
+	background: url(../cartoons/note.png);
+
+	display: inline-block;
+	width:22px; height:22px;
+
+	position: relative;
+	top:3px;
+
+	cursor: pointer;
+
+	-webkit-transition: top 0.1s linear;
+    -moz-transition: top 0.1s linear;
+    -ms-transition: top 0.1s linear;
+    -o-transition: top 0.1s linear;
+    transition: top 0.1s linear;
+
+    -webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;        
+
+}
+.easter_egg > img{
+	display: none;
+}
+.easter_egg:hover{
+	top:0px;
+}
+.easter_egg:hover > img{
+	display: block;
+}
+.easter_container{
+	width:0; height:0;
+	position:relative;
+	display: none;
+
+	-webkit-transition: left 1.0s ease-in-out;
+    -moz-transition: left 1.0s ease-in-out;
+    -ms-transition: left 1.0s ease-in-out;
+    -o-transition: left 1.0s ease-in-out;
+    transition: left 1.0s ease-in-out;
+
+}
+.easter_container[show]{
+	display: block;
 }

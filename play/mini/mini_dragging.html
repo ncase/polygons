@@ -203,6 +203,12 @@ function SpecialDraggable(x,y){
 
 }
 
+function isDone(){
+	if(IS_PICKING_UP) return false;
+	var d = draggables[41];
+	return( Math.abs(d.x-575)<10 && Math.abs(d.y-275)<10 );
+}
+
 window.reset = function(){
 
 	START_SIM = false;

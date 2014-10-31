@@ -25,3 +25,22 @@ intro_background.contentWindow.focus();
 window.onload = function(){
 	window.onscroll();
 };
+
+// Easter Egg
+for(var i=0;i<playables.length;i++){
+	var p = playables[i];
+	p.contentWindow.SOLVE_MESSAGE = p.id;
+}
+window.showEasterEgg = function(id){
+	
+	var thing = document.querySelector(".easter_container#"+id);
+	if(thing.getAttribute("show")) return;
+
+	var pos = parseInt(thing.style.left);
+	thing.style.left = (pos+800)+"px";
+	thing.setAttribute("show",true);
+	setTimeout(function(){
+		thing.style.left = (pos)+"px";
+	},600);
+
+};

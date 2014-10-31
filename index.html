@@ -18,12 +18,18 @@
 
 		<p><strong>These are the adorable polygon people.</strong></p>
 		<p>
-			They're 50% Triangles, 50% Squares, and 100% slightly biased against each other.
+			They're 50% Triangles, 50% Squares, and 100% slightly biased.
+			
+			<span class="easter_egg"><img src="cartoons/shapist0.png"/></span>
+
 			Emphasis on the word <i>slightly</i>.
 			In fact, every polygon would prefer to be part of a diverse crowd of shapes:
 		</p>
 
-		<iframe playable src="play/mini/mini_dragging.html" width="710" height="360" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
+		<iframe id="mini_dragging" playable src="play/mini/mini_dragging.html" width="710" height="360" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
+		<div id="mini_dragging" class="easter_container" style="top:-42px; left:455px;">
+			<span class="easter_egg"><img src="cartoons/shapist1.png"/></span>
+		</div>
 
 		<p>
 			They're only uncomfortable if an overwhelming majority of shapes around them are different.
@@ -112,7 +118,9 @@
 		</p>
 		<iframe playable src="play/mini/mini_bias_1.html" width="310" height="420" scrolling="no" style="float:left; margin:0; margin-left:50px" embedded></iframe>
 		<iframe playable src="play/mini/mini_bias_2.html" width="310" height="420" scrolling="no" style="float:right; margin:0; margin-right:50px" embedded></iframe>
-		<div style="clear:both"></div>
+		<div style="clear:both;height: 0;position: relative;">
+			<div style="width: 6px; height: 400px; background: #bbb;position: absolute;top: -420px;left: 397px;"></div>
+		</div>
 		<p>
 			But if you start with a new random board, at 0% bias, things look pretty good.
 			You might think simply having completely unbiased polygons would fix our segregation problems.
@@ -234,6 +242,6 @@
 
 </body>
 
-<script src="js/insight.js"></script>
+<script src="js/intro.js"></script>
 
 </html>
