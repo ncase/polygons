@@ -10,6 +10,9 @@ body{
 
 	min-width:1040px;
 	
+	background-image: url(../sketches/shapist0.png);
+	background-repeat: no-repeat;
+
 }
 
 a{
@@ -47,6 +50,11 @@ a:hover{
 	width: 100%;
 	background: #222;
 	overflow: hidden;
+}
+.playable > #play_title{
+	color: #fff;
+	margin-top: 30px;
+	text-align: center;
 }
 .playable iframe{
 	display: block;
