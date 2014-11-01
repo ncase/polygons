@@ -32,6 +32,9 @@ for(var i=0;i<playables.length;i++){
 	p.contentWindow.SOLVE_MESSAGE = p.id;
 }
 window.showEasterEgg = function(id){
+
+	// MEH
+	return;
 	
 	var thing = document.querySelector(".easter_container#"+id);
 	if(thing.getAttribute("show")) return;
