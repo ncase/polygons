@@ -260,7 +260,7 @@ function render(){
 	lastMouseY = Mouse.y;
 
 	// Done?
-	if(isDone()){
+	/*if(isDone()){
 		doneBuffer--;
 		if(doneBuffer==0){
 			doneAnimFrame = 30;
@@ -280,7 +280,7 @@ function render(){
 		canvas.style.background = "rgba(255,255,255,"+opacity+")";
 	}else{
 		canvas.style.background = "none";
-	}
+	}*/
 
 }
 

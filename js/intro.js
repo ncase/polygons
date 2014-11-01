@@ -27,23 +27,21 @@ window.onload = function(){
 };
 
 // Easter Egg
-for(var i=0;i<playables.length;i++){
-	var p = playables[i];
-	p.contentWindow.SOLVE_MESSAGE = p.id;
-}
-window.showEasterEgg = function(id){
-
-	// MEH
-	return;
-	
-	var thing = document.querySelector(".easter_container#"+id);
-	if(thing.getAttribute("show")) return;
-
-	var pos = parseInt(thing.style.left);
-	thing.style.left = (pos+window.innerWidth)+"px";
-	thing.setAttribute("show",true);
-	setTimeout(function(){
-		thing.style.left = (pos)+"px";
-	},500);
-
+var cartoon_container = document.getElementById("cartoon_container");
+var cartoon = document.getElementById("cartoon");
+var cartoons = document.querySelectorAll("span[cartoon]");
+for(var i=0; i<cartoons.length; i++){
+	(function(c){
+		c.onmouseover = function(){
+			cartoon.src = "cartoons/"+c.getAttribute("cartoon");
+			cartoon_container.style.display = "block";
+		};
+		c.onmousemove = function(){
+			cartoon.style.top = (Mouse.y+10)+"px";
+			cartoon.style.left = (Mouse.x+10)+"px";
+		};
+		c.onmouseout = function(){
+			cartoon_container.style.display = "none";
+		};
+	})(cartoons[i]);
 };
