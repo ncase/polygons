@@ -85,6 +85,7 @@ span[cartoon]:hover{
 	color:#aaa;
 	border-color: #aaa;
 }
+
 #cartoon_container{
 	display: none;
 	position: fixed;
@@ -94,4 +95,28 @@ span[cartoon]:hover{
 }
 #cartoon{
 	position: absolute;
+	border-radius: 20px;
+
+	width:270px; padding:15px;
+	background-color: #fff;
+
+	-webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 5px 20px 0 rgba(0,0,0,0.5);
+	box-shadow: 0 5px 20px 0 rgba(0,0,0,0.5);
+
+}
+#cartoon_arrow{
+	
+	display: block;
+
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 20px solid #fff;
+
+	position: absolute;
+	top:-20px;
+	left:140px;
+
 }

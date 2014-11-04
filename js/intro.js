@@ -37,8 +37,8 @@ for(var i=0; i<cartoons.length; i++){
 			cartoon_container.style.display = "block";
 		};
 		c.onmousemove = function(){
-			cartoon.style.top = (Mouse.y+10)+"px";
-			cartoon.style.left = (Mouse.x+10)+"px";
+			cartoon_container.style.top = (Mouse.y+40)+"px";
+			cartoon_container.style.left = (Mouse.x-150)+"px";
 		};
 		c.onmouseout = function(){
 			cartoon_container.style.display = "none";

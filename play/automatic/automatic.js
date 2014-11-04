@@ -256,7 +256,7 @@ window.reset = function(){
 
 window.render = function(){
 
-	if(assetsLeft>0) return;
+	if(assetsLeft>0 || !draggables) return;
 	
 	// Is Stepping?
 	if(START_SIM){
