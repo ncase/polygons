@@ -120,3 +120,18 @@ span[cartoon]:hover{
 	left:140px;
 
 }
+#cartoon_arrow[flipped=true]{
+	
+	display: block;
+
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 20px solid #fff;
+
+	position: absolute;
+	top:-20px;
+	left:140px;
+
+}
