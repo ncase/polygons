@@ -94,7 +94,7 @@ function Draggable(x,y){
 		self.shaking = false;
 		self.bored = false;
 		if(!self.dragged){
-			var neighbours = 0;
+			var neighbors = 0;
 			var same = 0;
 			for(var i=0;i<draggables.length;i++){
 				var d = draggables[i];
@@ -102,16 +102,16 @@ function Draggable(x,y){
 				var dx = d.x-self.x;
 				var dy = d.y-self.y;
 				if(dx*dx+dy*dy<DIAGONAL_SQUARED){
-					neighbours++;
+					neighbors++;
 					if(d.color==self.color){
 						same++;
 					}
 				}
 			}
-			if(neighbours>0 && (same/neighbours)<0.33){
+			if(neighbors>0 && (same/neighbors)<0.33){
 				self.shaking = true;
 			}
-			if(neighbours==0 || (same/neighbours)>0.99){
+			if(neighbors==0 || (same/neighbors)>0.99){
 				self.bored = true;
 			}
 		}
@@ -233,4 +233,4 @@ window.requestAnimFrame = window.requestAnimationFrame ||
 	}
 })();
 
-window.IS_IN_SIGHT = true;
+window.IS_IN_SIGHT = false;

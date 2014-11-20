@@ -23,28 +23,43 @@
 	<!-- Chapter 1: The Rules of Schelling's Model -->
 	<div class="chapter">
 
-		<p><strong>These are the adorable polygon people.</strong></p>
 		<p>
-			They're 50% Triangles, 50% Squares, and 100% slightly biased against each other.
-			<span cartoon="i_like_squares.png">But only slightly!</span>
-			In fact, every polygon <i>prefers</i> being in a diverse crowd:
+			<strong>Y'know, it's tough being a triangle in a square world.</strong>
+		</p>
+		<p>
+			Sure, most squares are glad you're around. But it's never quite comfortable.
+			Speaking as a triangle, I'd much rather be around both triangles and squares!
 		</p>
 
 		<iframe id="mini_intro" playable src="play/mini/mini_intro.html" width="800" height="385" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
-			They're only uncomfortable if <i>less than 1/3 of their immediate neighbors</i> are a different shape.
-			I mean, they don't run screaming, because they're not shapist or anything,
-			but given the opportunity to move somewhere else, they will.
+			I'm not biased against squares.
+			<span cartoon="i_like_squares.png">I hang out with lots of squares!</span>
+			Like all shapes, I'm really only uncomfortable when an overwhelming majority of the shapes around me are different.
+			I mean, I don't run screaming, I'm not shapist or anything, but given the opportunity to move,
+			I think we'd all rather be in a 50/50 sort of situation.
+		</p>
+
+		<p>
+			All shapes have eight possible neighbors around them.
+			In the below example, the triangle in the center has five square neighbors and one triangle neighbor.
+			Only one out of six (16%) of their neighbors are like them!
+			They'd be happier next to one triangle and one square,
+			so one out of two (50%) of their neighbors are like them.
 		</p>
 
 		<iframe id="mini_unhappy" playable src="play/mini/mini_unhappy.html" width="250" height="300" scrolling="no" style="margin:0 auto;display:block"  embedded></iframe>	
 
 		<p>
-			And that should be fine, right?
-			Every polygon would be happy with a 50/50 mixed neighborhood.
-			Surely their very slight bias can't affect the larger shape society that much?
-			Well...
+			50/50 is pretty ideal for all shapes in shapeland, and if it's 60/40 and I'm in the minority,
+			well, I don't mind! Better than being in a boring neighborhood of all triangles!
+			All shapes are basically the same. We only want to move if less than a third (33%)
+			of our neighbors are like us. If that's bias, well,
+			<span cartoon="fifty_fifty.png">surely it's a minor one.</span>
+		</p>
+		<p>
+			If everyone were as unbiased as I was, wouldn't everything be fine?
 		</p>
 		<div class="instruction">
 			drag &amp; drop polygons until the whole shape society is stable:
@@ -60,22 +75,25 @@
 	<!-- Chapter 2: This Is Not A Fluke -->
 	<div class="chapter"> 
 		<p>
-			And... our shape society ends up segregated. Bummer.
+			The result is inevitable. Clearly visible separation, with many shapes having little to no contact with other kinds of shapes.
 		</p>
 		<p>
-			Sometimes a neighborhood just becomes square,
-			and it's not their fault if no triangles wanna stick around.
+			Well, sometimes a neighborhood just becomes a square neighborhood,
+			and it's not their fault if no triangles seem to want to stick around.
 			And a triangular neighborhood would welcome a square, but
-			<span cartoon="square_left.png">they can't help it if squares ain't interested.</span>
+			<span cartoon="square_left.png">we can't help it if squares aren't interested.</span>
 		</p>
 		
 		<iframe id="mini_neighborhood" playable src="play/mini/mini_neighborhood.html" width="730" height="240" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
-			This next bit automatically moves unhappy shapes around for you.
-			(you can still move them by hand if you want carpal tunnel)
-			Also, this simulation tracks, on average,
+			Next is a larger simulation, where you can still move shapes by hand,
+			or let unhappy shapes automatically move towards more
+			<span cartoon="culture_fit.jpg">comfortable locations.</span>
+			You can also see a graph that measures, on average,
 			what percentage of a polygon's neighbors are like themselves.
+			<!--br>
+			// Next is: thingy bah-->
 		</p>
 		<div class="instruction">
 			run this simulation a few times. what happens?
@@ -90,21 +108,26 @@
 	<!-- Chapter 3: Micromotives, Macrobehaviour -->
 	<div class="chapter">
 		<p>
-			What's up with that? These are good shapes, <span cartoon="nice_triangle.jpg">nice shapes</span>.
-			So how is it even though every individual seems like a model citizen,
-			with only the slightest of bias, the entire shape society cracks and splits?
+			What is up with this shape separation? My people are good shapes,
+			<span cartoon="nice_triangle.jpg">nice shapes</span>.
+			So why is it that even when every individual seems like a model citizen,
+			with just a slight preference to move only if we're overwhelmingly surrounded by shapes unlike us,
+			why does shape life end up so boring?
 		</p>
 		
 		<iframe id="mini_checkerboard" playable src="play/mini/mini_checkerboard.html" width="730" height="240" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
-			<strong>Small individual bias can lead to large collective bias.</strong>
+			Even with little <i>individual</i> bias, you can end up with massive <i>institutional</i> bias.
 		</p>
 		<p>	
-			Equality is not an equilibrium.
-			The smallest of bias can push a whole society past the tipping point.
-			Hm... what if we taught these shapes to have zero bias?
-			Or if you're feeling particularly evil today, more bias?
+			Equality is an unstable equilibrium. It breaks at the slightest disturbance.
+			Perhaps we could teach shapes to have less bias.
+			Perhaps it's wrong of me to notice when I'm surrounded by squares,
+			and wrong that squares who visit our triangle-dominated areas never seem to want to stay.
+			What if we could teach all shapes to have zero preference for the shape of their neighbors?
+			Or what if we just gave up, and decided to
+			<span cartoon="own_kind.jpg">stick with our own kind?</span>
 		</p>
 		<div class="instruction">
 			try changing the shapes' individual bias:
@@ -119,11 +142,15 @@
 	<!-- Chapter 3: Micromotives, Macrobehaviour -->
 	<div class="chapter">
 		<p>
-			Notice how much more segregated things get when you increase the bias beyond 33%.
-			What if shapes were unhappy if only less than
-			<span cartoon="half_square.jpg">50%</span>
-			of their neighbors were like them?
-			Seems reasonable for a shape to prefer not being in the minority...
+			I don't know what we can reasonably expect of our fellow shapes,
+			but maybe we can figure out what we reasonably need.
+		</p>
+		<p>
+			What if shapes were unhappy if less than
+			<span cartoon="half_square.jpg">half</span> of their neighbors were like them?
+			It might seem reasonable for a shape to prefer not being in the minority!
+			Yet compared to 33%, where there's at least the potential for a happy shapeland,
+			things get much worse very quickly.
 		</p>
 		
 		<iframe id="mini_bias_1" playable src="play/mini/mini_bias_1.html" width="310" height="420" scrolling="no" style="float:left; margin:0; margin-left:50px" embedded></iframe>
@@ -133,11 +160,22 @@
 		</div>
 
 		<p>
-			So yeah, just turn everyone's bias down to zero, right?
-			Haha, NOPE. The real world doesn't start anew with a random shuffling of citizens every day.
-			Everyday, you're not shuffling.
+			And when a shape's bias gets too high,
+			<span cartoon="moved.png">it gets tough to be comfortable anywhere.</span>
+			That's not fun for anybody! 
+ 			Maybe we really do need a world with no bias.
+			In a new and random world, full of shapes who don't see shapes, who are
+			<span cartoon="real_shapist.png">shape-blind</span>,
+			completely accepting of all, well, everyone is a lot happier!
+			Of course, the polygon world doesn't start anew every morning with all of us
+			running around into new random positions. It starts off just how we left it the day before,
+			relatively stable with certain shape-dominated spaces created by
+			<span cartoon="past.png">past bias</span>.
 		</p>
-
+		<p>
+			Let's see what happens when we take yesterday's shapeland and decrease bias to zero,
+			for a new and greater tomorrow!
+		</p>
 		<div class="instruction">
 			world starts segregated. what happens when you lower the bias?
 		</div>
@@ -160,20 +198,26 @@
 		</p>
 		<p><strong>In a world where bias ever existed, being unbiased isn't enough!</strong><p>
 		<p>
-			The past haunts the present. We're gonna need
+			The lingering effects of yesterday's problems have a certain momentum,
+			and we're gonna need
 			<span cartoon="speak_up.jpg">active measures</span>
 			if we want things to change.
+		</p>
+		<p>
 			Hm... y'know, I hear that hanging out only with similar shapes is like,
-			really super boring. What if shapes wanted to seek out just a lil' more variety?
+			really super boring. All the cool shapes are nonconformists.
+			Yes, if other shapes are
+			<span cartoon="uncomfortable.png">too similar</span>, the hip squares seek more triangles,
+			and the awesome triangles seek out squares! 
 		</p>
 		
 		<iframe id="mini_nonconform" playable src="play/mini/mini_nonconform.html" width="400" height="440" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
-			Woah. Even though each polygon would be okay with having up to 90% of their neighbors that are like them,
-			they all mix together!
-			Let's see this play out on a larger scale,
-			when we change the amount of bias and anti-bias for all shapes.
+			Woah. Even though each polygon would be okay with having up to 90% of their neighbors like them,
+			this separated community gets totally mixed up! In a good way!
+			Let's see how this would play out on a larger scale,
+			changing the amount of bias and conformity for all shapes.
 		</p>
 		<div class="instruction">
 			world starts segregated. what happens when shapes demand even the smallest bit of diversity?
@@ -190,8 +234,8 @@
 		<p>
 			All it takes is a change in the perception of what an acceptable environment looks like.
 			So, fellow shapes, remember it's not about triangles vs squares, and it's not about bias 
-			against shapes that don't look like you.
-			It's about deciding what we want the world to look like, and settling for no less.
+			against shapes that don't look like you. It's about deciding what we want the world to look like,
+			and though we occasionally have to accept less, we never have to settle for it.
 		</p>
 		<p>
 			It might seem uncomfortable at first, and going out on your own can be isolating...
@@ -216,33 +260,13 @@
 
 	<!-- Chapter 3: Micromotives, Macrobehaviour -->
 	<div class="chapter">
-		<div class="instruction">
-			WRAPPING UP:
-		</div>
 		<p>
-			<b>1. Individual bias =/= Collective bias.</b>
-			<br>
-			When someone says a culture is shapist, they're not saying the <i>individuals</i> in it are shapist.
-			They're not attacking you personally. No need to feel defensive.
-			<!--b>1. Inequality has a tipping point.</b>
-			<br>
-			Small individual bias can lead to large collective bias.
-			When someone says a culture is shapist, they're not saying the <i>individuals</i> in it are shapist.
-			They're not attacking you personally. No need to feel defensive.-->
+			Here's a big ol' sandbox full of variables so you can try your own scenarios,
+			such as the different biases that are comfortable to maintain when living
+			in close quarters vs sparsely-populated shapelands.
 		</p>
 		<p>
-			<b>2. The past haunts the present.</b>
-			<br>
-			Your bedroom floor doesn't stop being dirty just coz you stopped dropping food all over the carpet.
-			Creating equality is like staying clean: it takes work. And it's always a work in progress.
-		</p>
-		<p>
-			<b>3. Demand diversity near you.</b>
-			<br>
-			If small biases created the mess we're in, small anti-biases might fix it.
-			Look around you. Your friends, your colleagues, that conference you're attending.
-			If you're all triangles, you're missing out on some amazing squares in your life -
-			that's unfair to everyone. Demand a lil' more diversity.
+			What else can you discover?
 		</p>
 	</div>
 
@@ -256,7 +280,7 @@
 			<div style="font-size:16px; line-height:18px">
 
 				Our cute, adorable segregation simulator is based off the work of Nobel Prize-winning game theorist,
-				Thomas Schelling. Specifically, his mathematical model of racial segregation found in
+				Thomas Schelling. Specifically, his mathematical model of bias found in
 				<a target="_blank" href="http://www.stat.berkeley.edu/~aldous/157/Papers/Schelling_Seg_Models.pdf">
 				Dynamic Models of Segregation.</a>
 				We built on top of his model, by showing how adding a small cultural demand for diversity can help

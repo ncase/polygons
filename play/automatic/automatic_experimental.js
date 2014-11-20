@@ -120,7 +120,7 @@ function Draggable(x,y){
 			// EXPERIMENTAL
 			var HAVE_A_SHAPIST_NEARBY = false;
 
-			var neighbours = 0;
+			var neighbors = 0;
 			var same = 0;
 			for(var i=0;i<draggables.length;i++){
 				var d = draggables[i];
@@ -128,7 +128,7 @@ function Draggable(x,y){
 				var dx = d.x-self.x;
 				var dy = d.y-self.y;
 				if(dx*dx+dy*dy<DIAGONAL_SQUARED){
-					neighbours++;
+					neighbors++;
 					
 					if(d.color==self.color){
 						same++;
@@ -138,8 +138,8 @@ function Draggable(x,y){
 
 				}
 			}
-			if(neighbours>0){
-				self.sameness = (same/neighbours);
+			if(neighbors>0){
+				self.sameness = (same/neighbors);
 			}else{
 				self.sameness = 1;
 			}
