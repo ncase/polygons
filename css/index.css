@@ -78,6 +78,7 @@ iframe[embedded]{
 	text-align:center; font-weight:bold; font-size:25px
 }
 
+/**
 span[cartoon]{
 	border-bottom:1px dashed black;
 }
@@ -85,6 +86,7 @@ span[cartoon]:hover{
 	color:#aaa;
 	border-color: #aaa;
 }
+**/
 
 #cartoon_container{
 	display: none;

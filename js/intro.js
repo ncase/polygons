@@ -15,10 +15,10 @@ window.onscroll = function(){
 	}
 
 	// HEADER
-	//intro_background.contentWindow.SCROLL = scrollY;
-	//outro_background.contentWindow.SCROLL = document.body.clientHeight-(scrollY+innerHeight);
-	intro_background.contentWindow.SCROLL = 700;
-	outro_background.contentWindow.SCROLL = 700;
+	intro_background.contentWindow.SCROLL = scrollY;
+	outro_background.contentWindow.SCROLL = document.body.clientHeight-(scrollY+innerHeight);
+	//intro_background.contentWindow.SCROLL = 700;
+	//outro_background.contentWindow.SCROLL = 700;
 
 };
 
@@ -30,6 +30,7 @@ window.onload = function(){
 };
 
 // Easter Egg
+/**
 var cartoon_container = document.getElementById("cartoon_container");
 var cartoon = document.getElementById("cartoon");
 var cartoons = document.querySelectorAll("span[cartoon]");
@@ -48,3 +49,4 @@ for(var i=0; i<cartoons.length; i++){
 		};
 	})(cartoons[i]);
 };
+**/
