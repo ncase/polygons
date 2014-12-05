@@ -15,6 +15,7 @@ function addAsset(name,src){
 }
 addAsset("yayTriangle","yay_triangle.png");
 addAsset("yaySquare","yay_square.png");
+addAsset("yayPentagon","yay_pentagon.png");
 
 
 function Swinger(){
@@ -52,8 +53,10 @@ function Swinger(){
 		var img;
 		if(self.color==0){
 			img = images.yaySquare;
-		}else{
+		}else if(self.color==1){
 			img = images.yayTriangle;
+		}else if(self.color==2){
+			img = images.yayPentagon;
 		}
 
 		ctx.drawImage(img,-30,-30,60,60);
@@ -62,6 +65,8 @@ function Swinger(){
 	};
 
 }
+
+var PENTAGON = false;
 
 var swingers = [];
 for(var i=0;i<1280;i+=50){
@@ -94,6 +99,10 @@ for(var i=0;i<1280;i+=50){
 		s.swing = x*0.1;
 		s.y = y;
 		s.baseRotation = (Math.random()*0.2-0.1);
+		if(!PENTAGON && s.x>1000 && j>=num){
+			PENTAGON = true;
+			s.color = 2;
+		}
 
 		if(!isNaN(s.y)){
 			swingers.push(s);
@@ -116,6 +125,14 @@ s.swing = x*0.1;
 s.y = 210;
 s.color = 0;
 swingers.push(s);
+
+/*var s = new Swinger();
+s.x = 640+30;
+s.swing = x*0.1;
+s.y = 210;
+s.color = 2;
+swingers.push(s);
+window.PENTAGON = s;*/
 
 swingers = swingers.sort(function(a,b){
 	return a.y-b.y;
