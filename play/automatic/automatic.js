@@ -343,14 +343,18 @@ window.writeStats = function(){
 		stats_ctx.drawImage(tmp_stats,-119,0);
 	}
 
+	// AVG -> SEGREGATION
+	var segregation = (avg-0.5)*2;
+	if(segregation<0) segregation=0;
+
 	// Graph it
 	stats_ctx.fillStyle = "#cc2727";
 	var x = STATS.steps - STATS.offset;
-	var y = 250 - avg*250 + 10;
+	var y = 250 - segregation*250+10;
 	stats_ctx.fillRect(x,y,1,5);
 
 	// Text
-	stats_text.innerHTML = Math.floor(avg*100)+"%";
+	stats_text.innerHTML = Math.floor(segregation*100)+"%";
 	stats_text.style.top = Math.round(y-15)+"px";
 	stats_text.style.left = Math.round(x+35)+"px";
 

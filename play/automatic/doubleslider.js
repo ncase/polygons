@@ -92,13 +92,13 @@ function DoubleSlider(dom,config){
 	document.body.addEventListener("mousemove",function(event){
 		var x = event.pageX - myX();
 		onMouseMove(x);
-	},false);
+	},true);
 	document.body.addEventListener("touchmove",function(event){
 		var x = event.changedTouches[0].clientX - myX();
 		onMouseMove(x);
-	},false);
-	document.body.addEventListener("mouseup",onMouseUp,false);
-	document.body.addEventListener("touchend",onMouseUp,false);
+	},true);
+	document.body.addEventListener("mouseup",onMouseUp,true);
+	document.body.addEventListener("touchend",onMouseUp,true);
 	var cacheX = null;
 	function myX(){
 		if(!cacheX) cacheX=findPos(self.dom)[0];

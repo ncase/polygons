@@ -38,8 +38,6 @@ div{
 #stats_text{
 	position: absolute;
 	color:#cc2727;
-	background: #222222;
-	padding: 5px;
 	font-size: 20px;
 }
 #stats_canvas_container{
