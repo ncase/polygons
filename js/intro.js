@@ -28,25 +28,3 @@ intro_background.contentWindow.focus();
 window.onload = function(){
 	window.onscroll();
 };
-
-// Easter Egg
-/**
-var cartoon_container = document.getElementById("cartoon_container");
-var cartoon = document.getElementById("cartoon");
-var cartoons = document.querySelectorAll("span[cartoon]");
-for(var i=0; i<cartoons.length; i++){
-	(function(c){
-		c.onmouseover = function(){
-			cartoon.src = "cartoons/"+c.getAttribute("cartoon");
-			cartoon_container.style.display = "block";
-		};
-		c.onmousemove = function(){
-			cartoon_container.style.top = (Mouse.y+40)+"px";
-			cartoon_container.style.left = (Mouse.x-100)+"px";
-		};
-		c.onmouseout = function(){
-			cartoon_container.style.display = "none";
-		};
-	})(cartoons[i]);
-};
-**/
