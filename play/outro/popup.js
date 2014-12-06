@@ -6,14 +6,14 @@ function sharePopup (event) {
 	// only open popup when clicked with left mouse button
 	// (middle click should still open the link in a new tab and
 	// right click should still open the context menu)
-	if ('buttons' in event) {
+	/*if ('buttons' in event) {
 		if (!(event.buttons & 1)) {
 			return true;
 		}
 	}
 	else if (event.button !== 0) {
 		return true;
-	}
+	}*/
  
 	// gather popup parameters
 	var href = this.getAttribute("data-popup-url") || this.href;
