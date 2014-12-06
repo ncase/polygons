@@ -145,7 +145,7 @@ function findPos(obj){
         var pos = findPos(obj.offsetParent);
         curleft += pos[0];
         curtop += pos[1];
-    } else if(obj.ownerDocument) {
+    }/* else if(obj.ownerDocument) {
         var thewindow = obj.ownerDocument.defaultView;
         if(!thewindow && obj.ownerDocument.parentWindow)
             thewindow = obj.ownerDocument.parentWindow;
@@ -156,7 +156,7 @@ function findPos(obj){
                 curtop += pos[1];
             }
         }
-    }
+    }*/
 
     return [curleft,curtop];
 }
