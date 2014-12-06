@@ -322,7 +322,7 @@ tmp_stats.height = stats_canvas.height;
 
 window.writeStats = function(){
 
-	if(!draggables || draggables.length==0) return;
+	if(draggables.length==0) return;
 
 	// Average Sameness Ratio
 	var total = 0;

@@ -12,13 +12,6 @@ body{
 iframe{
 	border: none;
 }
-div{
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;    
-}
 #container{
 	position: relative;
 	width:1030px;

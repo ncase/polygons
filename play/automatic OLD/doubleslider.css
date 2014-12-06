@@ -1,0 +1,20 @@
+.ds{
+	width:400px;
+	height:50px;
+	position: relative;
+	overflow:hidden;
+}
+.ds > div{
+	position: absolute;
+	height: 100%;
+}
+.ds > div.ds_bg{
+	height:100%;
+	background-repeat:no-repeat;
+	background-position: 50% 50%;
+}
+.ds > div.ds_slider{
+	width:10px;
+	background: url(ds_slider.png);
+	cursor: col-resize;
+}

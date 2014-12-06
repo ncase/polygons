@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<title>Automatic Simulation</title>
+	<link href="automatic.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<canvas id="canvas" width="600" height="600"></canvas>
+		<div id="stats">
+
+			<div id="stats_canvas_container">
+				<canvas id="stats_canvas" width="370" height="270"></canvas>
+				<div id="stats_text"></div>
+			</div>
+
+			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
+			<div class="ui" id="reset" onclick="reset()" style="margin-left:9px"></div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script src="../lib/Mouse.js"></script>
+<script src="automatic.js"></script>

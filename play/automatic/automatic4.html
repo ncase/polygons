@@ -3,6 +3,7 @@
 <head>
 	<title>Automatic Simulation - Nonconformity</title>
 	<link href="automatic.css" rel="stylesheet" type="text/css">
+	<link href="doubleslider.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="container">
@@ -14,15 +15,10 @@
 				<div id="stats_text"></div>
 			</div>
 
-			i'll move if <span class="highlight">less than <span id="bias_text">33%</span></span> of my neighbors are like me
+			i'll move if <span class="highlight">&lt;<span id="bias_text">33%</span></span> 
+			or <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> of my neighbors are like me
 			<br>
-			<input id="input_bias" style="width:100%" type="range" min="0" max="1" value="0.0" step="0.01" oninput="changeBias(value)">
-			
-			<br><br>
-			or if <span class="highlight">more than <span id="nonconform_text">100%</span></span> of my neighbors are like me
-			<br>
-			<input id="input_nonconform" style="width:100%" type="range" min="0" max="1" value="0.9" step="0.01" oninput="changeNonconform(value)">
-			<br>
+			<div id="slider"></div>
 			<br>
 
 			<div class="ui" id="moving" onclick="START_SIM=!START_SIM; doneBuffer = 60; window.writeStats()"></div>
@@ -34,9 +30,33 @@
 
 <script src="../lib/Mouse.js"></script>
 <script src="automatic.js"></script>
-<script src="automatic_bias.js"></script>
 <script src="automatic_start_segregated.js"></script>
-<script src="automatic_nonconform.js"></script>
+<script src="doubleslider.js"></script>
 <script>
 doneBuffer=-1;
+
+var bias_text = document.getElementById("bias_text");
+var nonconform_text = document.getElementById("nonconform_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider"),{
+	backgrounds:[
+		{color:"#555",icon:"ds_sad.png"},
+		{color:"#aaa",icon:"ds_happy.png"},
+		{color:"#555",icon:"ds_sad.png"}
+	],
+	values:[0.00,0.90],
+	onChange:function(values){
+		
+		window.BIAS = values[0];
+		window.NONCONFORM = values[1];
+
+		// Write stats
+		START_SIM = false;
+		window.writeStats();
+		bias_text.innerHTML = Math.round(window.BIAS*100)+"%";
+		nonconform_text.innerHTML = Math.round(window.NONCONFORM*100)+"%";
+
+	}
+});
+
 </script>
