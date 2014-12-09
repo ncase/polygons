@@ -13,9 +13,10 @@ var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5)
 
 
 
-window.RATIO_TRIANGLES = 0.5;
-window.RATIO_SQUARES = 0.5;
-window.EMPTINESS = 0.2;
+window.RATIO_TRIANGLES = 0.25;
+window.RATIO_SQUARES = 0.25;
+window.RATIO_PENTAGONS = 0.25;
+window.EMPTINESS = 0.25;
 
 
 var assetsLeft = 0;
@@ -36,6 +37,9 @@ addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
+addAsset("yayPentagon","../img/yay_pentagon.png");
+addAsset("mehPentagon","../img/meh_pentagon.png");
+addAsset("sadPentagon","../img/sad_pentagon.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
@@ -196,7 +200,7 @@ function Draggable(x,y){
 			}else{
 				img = images.yayTriangle;
 			}
-		}else{
+		}else if(self.color=="square"){
 			if(self.shaking){
 				img = images.sadSquare;
 			}else if(self.bored){
@@ -204,7 +208,15 @@ function Draggable(x,y){
 			}else{
 				img = images.yaySquare;
 			}
-		}
+		}else{
+			if(self.shaking){
+				img = images.sadPentagon;
+			}else if(self.bored){
+				img = images.mehPentagon;
+			}else{
+				img = images.yayPentagon;
+			}
+        }
 
 		// Dangle
 		if(self.dragged){
@@ -238,9 +250,16 @@ window.reset = function(){
 	draggables = [];
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
-			if(Math.random()<(1-window.EMPTINESS)){
+            var rand = Math.random();
+			if(rand<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = (Math.random()<window.RATIO_TRIANGLES) ? "triangle" : "square";
+                if(rand<window.RATIO_TRIANGLES){
+                    draggable.color = "triangle";
+                }else if(rand<(window.RATIO_TRIANGLES+window.RATIO_SQUARES)){
+                    draggable.color = "square";
+                }else{
+                    draggable.color = "pentagon";
+                }
 				draggables.push(draggable);
 			}
 		}
@@ -314,7 +333,12 @@ window.render = function(){
 	lastMouseY = Mouse.y;
 
 }
-var stats_text = document.getElementById("stats_text");
+var segregation_text = document.getElementById("segregation_text");
+if(!segregation_text){
+    var segregation_text = document.getElementById("stats_text");
+}
+var shaking_text = document.getElementById("sad_text");
+var bored_text = document.getElementById("meh_text");
 
 var tmp_stats = document.createElement("canvas");
 tmp_stats.width = stats_canvas.width;
@@ -325,12 +349,20 @@ window.writeStats = function(){
 	if(!draggables || draggables.length==0) return;
 
 	// Average Sameness Ratio
+	// Average shaking 
+	// Average bored 
 	var total = 0;
+    var total_shake = 0;
+    var total_bored = 0;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		total += d.sameness || 0;
+        total_shake += (d.shaking?1:0);
+        total_bored += (d.bored?1:0);
 	}
 	var avg = total/draggables.length;
+	var avg_shake = total_shake/draggables.length;
+	var avg_bored = total_bored/draggables.length;
 	if(isNaN(avg)) debugger;
 
 	// If stats oversteps, bump back
@@ -345,6 +377,7 @@ window.writeStats = function(){
 
 	// AVG -> SEGREGATION
 	var segregation = (avg-0.5)*2;
+	var segregation = avg;
 	if(segregation<0) segregation=0;
 
 	// Graph it
@@ -352,11 +385,30 @@ window.writeStats = function(){
 	var x = STATS.steps - STATS.offset;
 	var y = 250 - segregation*250+10;
 	stats_ctx.fillRect(x,y,1,5);
-
 	// Text
-	stats_text.innerHTML = Math.floor(segregation*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
+	segregation_text.innerHTML = Math.floor(segregation*100)+"%";
+	segregation_text.style.top = Math.round(y-15)+"px";
+	segregation_text.style.left = Math.round(x+35)+"px";
+
+	stats_ctx.fillStyle = "#2727cc";
+	y = 250 - avg_shake*250+10;
+	stats_ctx.fillRect(x,y,1,5);
+	// Text
+    if(shaking_text){
+        shaking_text.innerHTML = Math.floor(avg_shake*100)+"%";
+        shaking_text.style.top = Math.round(y-15)+"px";
+        shaking_text.style.left = Math.round(x+35)+"px";
+    }
+
+	stats_ctx.fillStyle = "#cccc27";
+	y = 250 - avg_bored*250+10;
+	stats_ctx.fillRect(x,y,1,5);
+	// Text
+    if(bored_text){
+	bored_text.innerHTML = Math.floor(avg_bored*100)+"%";
+	bored_text.style.top = Math.round(y-15)+"px";
+	bored_text.style.left = Math.round(x+35)+"px";
+    }
 
 	// Button
 	if(START_SIM){
