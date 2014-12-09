@@ -20,3 +20,4 @@ Tweet us at
 ---
 
 This fork adds pentagons in the style shown in the picture at the bottom.
+![](./play/img/yay_penagon.png)
