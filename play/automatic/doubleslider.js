@@ -48,10 +48,12 @@ function DoubleSlider(dom,config){
 
 		// Events
 		(function(dom,i,self){
-			dom.onmousedown = function(){
+			var onMouseDown = function(){
 				self.draggingSliderDOM = dom;
 				self.draggingSliderIndex = i;
 			};
+			dom.addEventListener("mousedown",onMouseDown,true);
+			dom.addEventListener("touchstart",onMouseDown,true);
 		})(dom,i,self);
 
 	}
@@ -92,11 +94,13 @@ function DoubleSlider(dom,config){
 	document.body.addEventListener("mousemove",function(event){
 		var x = event.pageX - myX();
 		onMouseMove(x);
-	},true);
+	},false);
+	
 	document.body.addEventListener("touchmove",function(event){
 		var x = event.changedTouches[0].clientX - myX();
 		onMouseMove(x);
-	},true);
+	},false);
+
 	document.body.addEventListener("mouseup",onMouseUp,true);
 	document.body.addEventListener("touchend",onMouseUp,true);
 	var cacheX = null;

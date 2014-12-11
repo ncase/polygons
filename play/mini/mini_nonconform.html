@@ -1,28 +1,35 @@
-<link href="mini.css" rel="stylesheet" type="text/css">
-<canvas id="canvas"></canvas>
-<br>
-<div style="text-align:center; margin:10px 0; color:#777">
-        もしお隣さんのうち<span style="color:#dd3939">90% 以上</span>が
-        <br>
-        自分と同じ形なのであれば引っ越します
-</div>
-<div id="reset" onclick="reset()">reset</div>
+<!doctype html>
+<html>
+<head>
+	<link href="mini.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<br>
+	<div style="text-align:center; margin:10px 0; color:#777">
+                もしお隣さんのうち<span style="color:#dd3939">90% 以上</span>が
+                <br>
+                自分と同じ形なのであれば引っ越します
+	</div>
+	<div id="reset" onclick="reset()">reset</div>
 
-<script>
-var TILE_SIZE = 80;
-var PEEP_SIZE = 80;
+	<script>
+	var TILE_SIZE = 80;
+	var PEEP_SIZE = 80;
 
-var GRID = [
-	[1,1,0,2,2],
-	[1,1,0,2,2],
-	[1,1,0,2,2],
-	[1,1,0,2,2]
-];
-</script>
-<script src="../lib/Mouse.js"></script>
-<script src="mini.js"></script>
-<script src="mini_blah.js"></script>
-<script>
-NONCONFORM = 0.90;
-BIAS = 0.00;
-</script>
+	var GRID = [
+		[1,1,0,2,2],
+		[1,1,0,2,2],
+		[1,1,0,2,2],
+		[1,1,0,2,2]
+	];
+	</script>
+	<script src="../lib/Mouse.js"></script>
+	<script src="mini.js"></script>
+	<script src="mini_blah.js"></script>
+	<script>
+	NONCONFORM = 0.90;
+	BIAS = 0.00;
+	</script>
+</body>
+</html>

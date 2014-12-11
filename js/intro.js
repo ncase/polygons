@@ -6,7 +6,7 @@ var outro_background = document.getElementById("outro_background");
 window.onscroll = function(){
 
 	// Playables - PAUSE & UNPAUSE
-	var scrollY = window.scrollY;
+	var scrollY = window.pageYOffset;
 	var innerHeight = window.innerHeight;
 	for(var i=0;i<playables.length;i++){
 		var p = playables[i];
