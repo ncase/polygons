@@ -48,10 +48,12 @@ function DoubleSlider(dom,config){
 
 		// Events
 		(function(dom,i,self){
-			dom.onmousedown = function(){
+			var onMouseDown = function(){
 				self.draggingSliderDOM = dom;
 				self.draggingSliderIndex = i;
 			};
+			dom.addEventListener("mousedown",onMouseDown,true);
+			dom.addEventListener("touchstart",onMouseDown,true);
 		})(dom,i,self);
 
 	}
