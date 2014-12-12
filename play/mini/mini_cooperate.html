@@ -1,184 +1,191 @@
-<link href="mini.css" rel="stylesheet" type="text/css">
-<style>
-body{
-	background: url(finale.png);
-	background-repeat: no-repeat;
-}
-</style>
-<canvas id="canvas"></canvas>
-<div style="margin-bottom:20px"></div>
-<div id="reset" onclick="reset()">重設</div>
-
-<script>
-var TILE_SIZE = 80;
-var PEEP_SIZE = 80;
-
-var GRID = [
-	[2,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,0,0,0,0,2]
-];
-</script>
-<script>
-(function(exports){
-
-	// Singleton
-	var Mouse = {
-		x: 0,
-		y: 0,
-		pressed: false
-	};
-	exports.Mouse = Mouse;
-	
-	// Event Handling
-	var onMouseMove,onTouchMove;
-	
-	document.body.addEventListener("mousedown",function(event){
-	    Mouse.pressed = true;
-	    onMouseMove(event);
-	},false);
-
-	document.body.addEventListener("mouseup",function(event){
-	    Mouse.pressed = false;
-	},false);
-
-	document.body.addEventListener("mousemove",onMouseMove = function(event){
-		Mouse.x = event.pageX - window.scrollX;
-		Mouse.y = event.pageY - window.scrollY - 30;
-
-	},false);
-
-	document.body.addEventListener("touchstart",function(event){
-	    Mouse.pressed = true;
-	    onTouchMove(event);
-	},false);
-
-	document.body.addEventListener("touchend",function(event){
-	    Mouse.pressed = false;
-	},false);
-
-	document.body.addEventListener("touchmove",onTouchMove = function(event){
-		Mouse.x = event.changedTouches[0].clientX - window.scrollX;
-		Mouse.y = event.changedTouches[0].clientY - window.scrollY - 30;
-	},false);
-
-
-})(window);
-</script>
-<script src="mini.js"></script>
-<script src="mini_blah.js"></script>
-<script>
-canvas.height += 60;
-function render(){
-
-	if(assetsLeft>0) return;
-
-	// Translate 60 down
-	ctx.save();
-	ctx.clearRect(0,0,canvas.width,canvas.height);
-	ctx.translate(0,30);
-
-	// Draw
-	Mouse.isOverDraggable = IS_PICKING_UP;
-	for(var i=0;i<draggables.length;i++){
-		var d = draggables[i];
-		d.update();
-
-		if(d.shaking){
-			var dx = Mouse.x-d.x;
-			var dy = Mouse.y-d.y;
-			if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
-				Mouse.isOverDraggable = true;
-			}
-		}
-
+<!doctype html>
+<html>
+<head>
+	<link href="mini.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<style>
+	body{
+		background: url(finale.png);
+		background-repeat: no-repeat;
 	}
-	for(var i=0;i<draggables.length;i++){
-		draggables[i].draw();
-	}
+	</style>
+	<canvas id="canvas"></canvas>
+	<div style="margin-bottom:20px"></div>
+	<div id="reset" onclick="reset()">重設</div>
 
-	// Mouse
-	lastMouseX = Mouse.x;
-	lastMouseY = Mouse.y;
+	<script>
+	var TILE_SIZE = 80;
+	var PEEP_SIZE = 80;
 
-	// Done?
-	if(isDone()){
-		doneBuffer--;
-		if(doneBuffer==0){
-			doneAnimFrame = 30;
-			if(!CONFETTI_TIME){
-				CONFETTI_TIME = true;
+	var GRID = [
+		[2,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,2]
+	];
+	</script>
+	<script>
+	(function(exports){
 
-				for(var i=0;i<100;i++){
-					confettis.push(new Confetti());
-				}
+		// Singleton
+		var Mouse = {
+			x: 0,
+			y: 0,
+			pressed: false
+		};
+		exports.Mouse = Mouse;
+		
+		// Event Handling
+		var onMouseMove,onTouchMove;
+		
+		document.body.addEventListener("mousedown",function(event){
+		    Mouse.pressed = true;
+		    onMouseMove(event);
+		},false);
 
-			}
-		}
-	}else{
-		doneBuffer = 30;
-	}
+		document.body.addEventListener("mouseup",function(event){
+		    Mouse.pressed = false;
+		},false);
 
-	// Confetti?
-	for(var i=0;i<confettis.length;i++){
-		confettis[i].update();
-		confettis[i].draw();
-	}
+		document.body.addEventListener("mousemove",onMouseMove = function(event){
+			Mouse.x = event.pageX;
+			Mouse.y = event.pageY - window.pageYOffset - 30;
 
-	ctx.restore();
+		},false);
 
-}
+		document.body.addEventListener("touchstart",function(event){
+		    Mouse.pressed = true;
+		    onTouchMove(event);
+		},false);
+
+		document.body.addEventListener("touchend",function(event){
+		    Mouse.pressed = false;
+		},false);
+
+		document.body.addEventListener("touchmove",onTouchMove = function(event){
+			Mouse.x = event.changedTouches[0].clientX;
+			Mouse.y = event.changedTouches[0].clientY - window.pageYOffset - 30;
+		},false);
 
 
-function Confetti(x,y){
-	
-	var self = this;
+	})(window);
+	</script>
+	<script src="mini.js"></script>
+	<script src="mini_blah.js"></script>
+	<script>
+	canvas.height += 60;
+	function render(){
 
-	self.x = Math.random()*810;
-	self.y = -40-Math.random()*250;
-	self.tick = Math.random()*Math.PI*2;
-	self.tickVel = Math.random()*0.2;
-	self.yVel = Math.random()+1;
-	self.xWidth = Math.random()*5+2;
+		if(assetsLeft>0) return;
 
-	self.color = "hsl("+Math.floor(Math.random()*360)+",80%,80%)";
-	
-	self.update = function(){
-		self.y += self.yVel;
-		self.tick += self.tickVel;
-		if(self.y>250){
-			self.y-=340;
-		}
-	};
-	self.draw = function(){
+		// Translate 60 down
 		ctx.save();
-		ctx.translate(self.x-Math.sin(self.tick)*self.xWidth,self.y);
-		ctx.rotate(Math.sin(self.tick)*0.2);
-		ctx.fillStyle = self.color;
-		ctx.fillRect(-10,-5,20,10);
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		ctx.translate(0,30);
+
+		// Draw
+		Mouse.isOverDraggable = IS_PICKING_UP;
+		for(var i=0;i<draggables.length;i++){
+			var d = draggables[i];
+			d.update();
+
+			if(d.shaking){
+				var dx = Mouse.x-d.x;
+				var dy = Mouse.y-d.y;
+				if(Math.abs(dx)<PEEP_SIZE/2 && Math.abs(dy)<PEEP_SIZE/2){
+					Mouse.isOverDraggable = true;
+				}
+			}
+
+		}
+		for(var i=0;i<draggables.length;i++){
+			draggables[i].draw();
+		}
+
+		// Mouse
+		lastMouseX = Mouse.x;
+		lastMouseY = Mouse.y;
+
+		// Done?
+		if(isDone()){
+			doneBuffer--;
+			if(doneBuffer==0){
+				doneAnimFrame = 30;
+				if(!CONFETTI_TIME){
+					CONFETTI_TIME = true;
+
+					for(var i=0;i<100;i++){
+						confettis.push(new Confetti());
+					}
+
+				}
+			}
+		}else{
+			doneBuffer = 30;
+		}
+
+		// Confetti?
+		for(var i=0;i<confettis.length;i++){
+			confettis[i].update();
+			confettis[i].draw();
+		}
+
 		ctx.restore();
-	};
-}
 
-function isDone(){
-
-	if(IS_PICKING_UP) return false;
-
-	for(var i=0;i<draggables.length;i++){
-		var d = draggables[i];
-		if(d.x<325 || d.x>475) return false;	
 	}
-	
-	return true;
-	
-}
 
-var CONFETTI_TIME = false;
 
-var oldReset = window.reset;
-window.reset = function(){
-	CONFETTI_TIME = false;
-	confettis = [];
-	oldReset();
-};
+	function Confetti(x,y){
+		
+		var self = this;
 
-</script>
+		self.x = Math.random()*810;
+		self.y = -40-Math.random()*250;
+		self.tick = Math.random()*Math.PI*2;
+		self.tickVel = Math.random()*0.2;
+		self.yVel = Math.random()+1;
+		self.xWidth = Math.random()*5+2;
+
+		self.color = "hsl("+Math.floor(Math.random()*360)+",80%,80%)";
+		
+		self.update = function(){
+			self.y += self.yVel;
+			self.tick += self.tickVel;
+			if(self.y>250){
+				self.y-=340;
+			}
+		};
+		self.draw = function(){
+			ctx.save();
+			ctx.translate(self.x-Math.sin(self.tick)*self.xWidth,self.y);
+			ctx.rotate(Math.sin(self.tick)*0.2);
+			ctx.fillStyle = self.color;
+			ctx.fillRect(-10,-5,20,10);
+			ctx.restore();
+		};
+	}
+
+	function isDone(){
+
+		if(IS_PICKING_UP) return false;
+
+		for(var i=0;i<draggables.length;i++){
+			var d = draggables[i];
+			if(d.x<325 || d.x>475) return false;	
+		}
+		
+		return true;
+		
+	}
+
+	var CONFETTI_TIME = false;
+
+	var oldReset = window.reset;
+	window.reset = function(){
+		CONFETTI_TIME = false;
+		confettis = [];
+		oldReset();
+	};
+
+	</script>
+</body>
+</html>

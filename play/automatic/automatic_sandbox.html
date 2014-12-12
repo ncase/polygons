@@ -20,16 +20,12 @@
 				<div id="stats_text"></div>
 			</div>
 
-			i'll move if <span class="highlight">&lt;<span id="bias_text">33%</span></span> 
-			or <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> of my neighbors are like me
+			如果 <span class="highlight">&lt;<span id="bias_text">33%</span></span> 或 <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> 的鄰居和我一樣，我就移動
 			<br>
 			<div id="slider"></div>
 			<br>
 
-			the triangle:square ratio is
-			<span class="highlight"><span id="ratio_text_triangles">40</span>:<span id="ratio_text_squares">40</span></span>,
-			board is
-			<span class="highlight" id="empty_text">20% empty</span>
+			「三角形：四邊形」比率是 <span class="highlight"><span id="ratio_text_triangles">40</span>:<span id="ratio_text_squares">40</span></span>，盤面有 <span class="highlight" id="empty_text">20% 的空間</span>
 			<br>
 			<div id="slider2"></div>
 			<br>
@@ -92,7 +88,7 @@ var whatever = new DoubleSlider(document.getElementById("slider2"),{
 		START_SIM = false;
 		document.getElementById("ratio_text_triangles").innerHTML = Math.round(window.RATIO_TRIANGLES*100);
 		document.getElementById("ratio_text_squares").innerHTML = Math.round(window.RATIO_SQUARES*100);
-		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"% empty";
+		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"% 的空間";
 
 	},
 	onLetGo:function(){
