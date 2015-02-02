@@ -1,27 +1,34 @@
-<link href="mini.css" rel="stylesheet" type="text/css">
-<canvas id="canvas"></canvas>
-<br>
-<div style="text-align:center; margin:10px 0; color:#777">
-	wants to move if <span style="color:#dd3939">less than 50%</span> of
+<!doctype html>
+<html>
+<head>
+	<link href="mini.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<canvas id="canvas"></canvas>
 	<br>
-	their neighbors are like them
-</div>
-<div id="reset" onclick="reset()">reset</div>
+	<div style="text-align:center; margin:10px 0; color:#777">
+		wants to move if <span style="color:#dd3939">less than 50%</span> of
+		<br>
+		their neighbors are like them
+	</div>
+	<div id="reset" onclick="reset()">reset</div>
 
-<script>
-var TILE_SIZE = 100;
-var PEEP_SIZE = 100;
+	<script>
+	var TILE_SIZE = 100;
+	var PEEP_SIZE = 100;
 
-var GRID = [
-	[1,2,1],
-	[2,0,2],
-	[1,2,1]
-];
-</script>
-<script src="../lib/Mouse.js"></script>
-<script src="mini.js"></script>
-<script src="mini_blah.js"></script>
-<script>
-NONCONFORM = 1.00;
-BIAS = 0.50;
-</script>
+	var GRID = [
+		[1,2,1],
+		[2,0,2],
+		[1,2,1]
+	];
+	</script>
+	<script src="../lib/Mouse.js"></script>
+	<script src="mini.js"></script>
+	<script src="mini_blah.js"></script>
+	<script>
+	NONCONFORM = 1.00;
+	BIAS = 0.50;
+	</script>
+</body>
+</html>
