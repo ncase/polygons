@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Automatic Simulation - SANDBOX</title>
+	<meta charset="UTF-8">
 	<link href="automatic.css" rel="stylesheet" type="text/css">
 	<link href="doubleslider.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
@@ -19,17 +20,20 @@
 				<canvas id="stats_canvas" width="370" height="270"></canvas>
 				<div id="stats_text"></div>
 			</div>
-
+			<!--
 			i'll move if <span class="highlight">&lt;<span id="bias_text">33%</span></span> 
-			or <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> of my neighbors are like me
+			or <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> of my neighbors are like me-->
+			Je-li <span class="highlight">&lt;<span id="bias_text">33%</span></span> nebo <span class="highlight">&gt;<span id="nonconform_text">100%</span></span> sousedů stejných, přesunu se.
 			<br>
 			<div id="slider"></div>
 			<br>
 
-			the triangle:square ratio is
+			<!--the triangle:square ratio is-->
+			Trojúhelníky:Čtverce =
 			<span class="highlight"><span id="ratio_text_triangles">40</span>:<span id="ratio_text_squares">40</span></span>,
-			board is
-			<span class="highlight" id="empty_text">20% empty</span>
+			<!--board is-->
+			plocha je z
+			<span class="highlight" id="empty_text">20 % prázdná</span>
 			<br>
 			<div id="slider2"></div>
 			<br>
@@ -92,7 +96,7 @@ var whatever = new DoubleSlider(document.getElementById("slider2"),{
 		START_SIM = false;
 		document.getElementById("ratio_text_triangles").innerHTML = Math.round(window.RATIO_TRIANGLES*100);
 		document.getElementById("ratio_text_squares").innerHTML = Math.round(window.RATIO_SQUARES*100);
-		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+"% empty";
+		document.getElementById("empty_text").innerHTML = Math.round(window.EMPTINESS*100)+" % prázdná";
 
 	},
 	onLetGo:function(){
