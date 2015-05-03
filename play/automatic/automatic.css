@@ -35,9 +35,19 @@ div{
 	font-size: 16px;
 	text-align: center;
 }
-#stats_text{
+#segregation_text{
 	position: absolute;
 	color:#cc2727;
+	font-size: 20px;
+}
+#sad_text{
+	position: absolute;
+	color:#2727cc;
+	font-size: 20px;
+}
+#meh_text{
+	position: absolute;
+	color:#cccc27;
 	font-size: 20px;
 }
 #stats_canvas_container{
