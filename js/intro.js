@@ -10,8 +10,8 @@ window.onscroll = function(){
 	var innerHeight = window.innerHeight;
 	for(var i=0;i<playables.length;i++){
 		var p = playables[i];
-		p.contentWindow.IS_IN_SIGHT = (p.offsetTop<scrollY+innerHeight && p.offsetTop+parseInt(p.height)>scrollY);
-		//p.contentWindow.IS_IN_SIGHT = false;
+		p.contentWindow.IS_IN_SIGHT = true;
+		//p.contentWindow.IS_IN_SIGHT = true;
 	}
 
 	// HEADER
