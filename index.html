@@ -1,32 +1,44 @@
 <!doctype html>
 <html>
 <head>
+	<meta charset="UTF-8">
 
 	<!-- Place this data between the <head> tags of your website -->
-	<title>Parable of the Polygons - a playable post on the shape of society</title>
-	<meta name="description" content="A playable post on how harmless choices can make a harmful world." />
+	
+	<!-- #TR <title>Parable of the Polygons - a playable post on the shape of society</title>
+	-->
+	<title>		
+		Bajka o tvarech - interaktivní zápisek o tvaru společnosti
+	</title>
+	<!-- #TR <meta name="description" content="A playable post on game theory, diversity, and the cutest bigots." /> -->
+	<!-- XXX bigots?  = fanatici? (Set)-->
+	<meta name="description" content="Interaktivní zápisek o teorii her, diverzitě a nejrozkošnějších fanaticích"> <!-- TODO -->
 	<link rel="icon" type="image/png" href="favicon.png">
 
 	<!-- Schema.org markup for Google+ -->
-	<meta itemprop="name" content="Parable of the Polygons">
-	<meta itemprop="description" content="A playable post on how harmless choices can make a harmful world.">
+	<!-- #TR <meta itemprop="name" content="Parable of the Polygons"> -->
+	<meta itemprop="name" content="Pohádka o tvarech">
+	<meta itemprop="description" content="A playable post on game theory, diversity, and the cutest bigots."> <!-- TODO -->
 	<meta itemprop="image" content="http://ncase.me/polygons/social/thumbnail.png">
 
 	<!-- Twitter Card data -->
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@ncasenmare">
-	<meta name="twitter:title" content="Parable of the Polygons">
-	<meta name="twitter:description" content="A playable post on how harmless choices can make a harmful world.">
+	<!-- #TR <meta name="twitter:title" content="Parable of the Polygons"> -->
+	<meta name="twitter:title" content="Pohádka o tvarech">
+	<meta name="twitter:description" content="A playable post on game theory, diversity, and the cutest bigots."> <!-- TODO -->
 	<meta name="twitter:creator" content="@vihartvihart">
 	<meta name="twitter:image" content="http://ncase.me/polygons/social/thumbnail.png">
 
 	<!-- Open Graph data -->
-	<meta property="og:title" content="Parable of the Polygons">
+	<!-- #TR <meta property="og:title" content="Parable of the Polygons"> -->
+	<meta property="og:title" content="Pohádka o tvarech">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="http://ncase.me/polygons">
 	<meta property="og:image" content="http://ncase.me/polygons/social/thumbnail.png">
-	<meta property="og:description" content="A playable post on how harmless choices can make a harmful world.">
-	<meta property="og:site_name" content="Parable of the Polygons">
+	<meta property="og:description" content="A playable post on game theory, diversity, and the cutest bigots."> <!-- TODO -->
+	<!-- #TR <meta property="og:site_name" content="Parable of the Polygons"> -->
+	<meta property="og:site_name" content="Pohádka o tvarech">
 
 	<!-- CSS -->
 	<link href="css/index.css" rel="stylesheet" type="text/css">
@@ -50,43 +62,61 @@
 	<!-- CHAPTER -->
 	<div class="chapter">
 
-		<p><strong>This is a story of how harmless choices can make a harmful world.</strong></p>
+		<!-- #TR <p><strong>This is a story of how harmless choices can make a harmful world.</strong></p> -->
+		<p><strong>Toto je bajka o tom, jak neškodná rozhodnutí mohou vést k nepřívětivému světu.</strong></p>
 		<p>
-			These little cuties are 50% Triangles, 50% Squares, and 100% slightly shapist.
-			But only slightly!
-			In fact, every polygon <i>prefers</i> being in a diverse crowd:
+			<!-- #TR These little cuties are 50% Triangles, 50% Squares, and 100% slightly shapist. -->
+			<!-- XXX tvaristi? -->
+			Tyto malé sympatické Tvary jsou z poloviny Trojúhelníky, z poloviny Čtverce a svému tvaru přikládají o trochu větší důležost, než si zaslouží. 
+			<!-- #TR <span cartoon="i_like_squares.png">But only slightly!</span> -->
+			<span cartoon="i_like_squares.png">Ale jenom trochu!</span>
+			<!-- #TR In fact, every polygon <i>prefers</i> being in a diverse crowd: -->
+			Popravdě řečeno, každý z Tvarů má <i>raději</i> trochu různorodosti ve svém okolí:
 		</p>
 
 		<iframe id="mini_intro" playable src="play/mini/mini_intro.html" width="800" height="385" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
-			You can only move them if they're unhappy with their immediate neighborhood.
-			Once they're OK where they are, <i>you can't move them until they're unhappy with their neighbors again</i>.
-			They've got one, simple rule:
+			<!-- #TR You can only move them if they're unhappy with their immediate neighborhood. -->
+			Je možné hýbat jen s Tvary, které jsou nespokojené s jejich bezprostředním okolím.
+			<!-- #TR Once they're OK where they are, <i>you can't move them until they're unhappy with their neighbors again</i>. -->
+			Jakmile jsou spokojeni s tím, kde jsou, <i>není možné je přesunout, dokud nejsou se svým okolím opět nespokojeni</i>.
+			<!-- #TR They've got one, simple rule: -->
+			Řídí se jediným jednoduchým pravidlem:
 		</p>
 
 		<p style="text-align:center">
 			<b>
-			“I wanna move if less than 1/3 of my neighbors are like me.”
+			<!-- #TR “I wanna move if less than 1/3 of my neighbors are like me.” -->
+			“Chci se přesunout, pokud méně než 1/3 z mých sousedů má stejný tvar jako já.”
 			</b>
 		</p>
-		<iframe playable src="play/mini/mini_unhappy.html" width="250" height="320" scrolling="no" style="float:left; margin:0; margin-left:10px; position:relative; left:-30px"  embedded></iframe>
-		<iframe playable src="play/mini/mini_happy.html" width="250" height="320" scrolling="no" style="float:left; margin:0; margin-left:10px"  embedded></iframe>
-		<iframe playable src="play/mini/mini_bored.html" width="250" height="320" scrolling="no" style="float:left; margin:0; margin-left:10px; position:relative; left:30px"  embedded></iframe>
-		<div style="clear:both;height: 0;position: relative;top:-20px;">
+		<iframe playable src="play/mini/mini_unhappy.html" width="250" height="315" scrolling="no" style="float:left; margin:0; margin-left:10px; position:relative; left:-30px"  embedded></iframe>
+		<iframe playable src="play/mini/mini_happy.html" width="250" height="315" scrolling="no" style="float:left; margin:0; margin-left:10px"  embedded></iframe>
+		<iframe playable src="play/mini/mini_bored.html" width="250" height="315" scrolling="no" style="float:left; margin:0; margin-left:10px; position:relative; left:30px"  embedded></iframe>
+		<div style="clear:both;height: 0;position: relative;">
 			<div style="width: 4px; height: 290px; background: #bbb;position: absolute;top: -292px;left: 245px;"></div>
 			<div style="width: 4px; height: 290px; background: #bbb;position: absolute;top: -292px;left: 537px;"></div>
 		</div>
+		<br>
 
 		<p>
-			Harmless, right?
-			Every polygon would be happy with a mixed neighborhood.
-			Surely their small bias can't affect the larger shape society that much?
-			Well...
+			<!-- #TR Harmless, right? -->
+			Neškodné, že?
+			<!-- #TR Every polygon would be happy with a mixed neighborhood. -->
+			Všechny Tvary by byly spokojené s rozmanitým okolím.
+			<!-- #TR Surely their small bias can't affect the larger shape society that much? -->
+			<!-- XXX trochu krkolomné -->
+			Zajisté by jejich drobné předsudky nemohly ovlivnit celou tvarovou společnost tak moc, že?
+			<!-- #TR Well... -->
+			Pojďme se na to podívat...
 		</p>
 		<div class="instruction">
-			drag &amp; drop unhappy polygons until nobody is unhappy:<br>
-			<span style="font-size:18px">(just move them to random empty spots. don't think too much about it.)</span>
+			<!-- #TR drag &amp; drop unhappy polygons until nobody is unhappy: -->
+			Přesouvej nespokojené Tvary dokud nebudou všechny spokojené.
+			<br>
+			<!-- #TR <span style="font-size:18px">(just move them to random empty spots. don't think too much about it.)</span> -->
+			<span style="font-size:18px">(není třeba nad tím příliš přemýšlet, prostě přesouvej nespokojené Tvary na náhodné místo)</span>
 		</div>
 
 	</div>
@@ -99,127 +129,193 @@
 	<!-- CHAPTER -->
 	<div class="chapter"> 
 		<p>
-			And... our shape society becomes super segregated. Daaaaang.
+			<!-- #TR 	And... our shape society becomes super segregated. Daaaaang.-->
+			Á... naše tvarová společnost se stává velmi segregovaná. Jejda.
 		</p>
 		<p>
+		<!-- #TR 
 			Sometimes a neighborhood just becomes square,
 			and it's not their fault if no triangles wanna stick around.
 			And a triangular neighborhood would welcome a square, but
-			they can't help it if squares ain't interested.
+			<span cartoon="square_left.png">they can't help it if squares ain't interested.</span>
+			
+			-->
+			
+			Někdy se stane celá čtvrť čtvercová,
+			a není to jejich chyba, že se žádné Trojúhelníky nechtějí potloukat kolem.
+			A trojúhelníková čtvrť by přivítala Čtverec s otevřenou náručí, ale 
+			<span cartoon="square_left.png">nemohou tomu pomoci, když o to Čtverce nestojí.</span>
+			
+			
+			
 		</p>
 		
 		<iframe id="mini_neighborhood" playable src="play/mini/mini_neighborhood.html" width="730" height="240" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
+			<!-- #TR 
 			In this next bit, unhappy shapes automatically move to random empty spots.
 			There's also a graph that tracks how much segregation there is over time.
+			-->
+			V této další ukázce, se nespokojené Tvary samy přesouvají do náhodných volných míst.
+			Taky je tu graf, který ukazuje množství segregace v čase.
+			
 		</p>
 		<div class="instruction">
-			run this simulation a few times. what happens?
+				<!-- #TR run this simulation a few times. what happens?	-->
+				Párkrát si to spusť. Co se stane?	
 		</div>
 	</div>
 
 	<!-- PLAYABLE -->
 	<div class="playable">
-		<iframe playable src="play/automatic/automatic.html" style="position:relative;left:10px" width="1050" height="600"></iframe>
+		<iframe playable src="play/automatic/automatic.html" width="1030" height="600"></iframe>
 	</div>
 
 	<!-- CHAPTER -->
 	<div class="chapter">
 		<p>
-			What's up with that? These are good shapes, nice shapes.
+		<!-- #TR	
+			What's up with that? These are good shapes, <span cartoon="nice_triangle.jpg">nice shapes</span>.
 			And yet, though every individual only has a slight bias, the entire shape society cracks and splits.
+			-->
+			Co se to děje? Toto jsou přece dobré Tvary, <span cartoon="nice_triangle.jpg">hodné Tvary</span>.
+			A přesto, i když každý jednotlivec má jen malinký předsudek, celá tvarová společnost se trhá a rozděluje.
 		</p>
 		
 		<iframe id="mini_checkerboard" playable src="play/mini/mini_checkerboard.html" width="730" height="240" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
-			<strong>Small individual bias can lead to large collective bias.</strong>
+		<!-- #TR	<strong>Small individual bias can lead to large collective bias.</strong> -->
+		<strong>Malé individuální předsudky vedou k ohromným společným předsudkům. </strong>
 		</p>
 		<p>	
+			<!-- #TR
 			Equality is an unstable equilibrium.
 			The smallest of bias can push a whole society past the tipping point.
 			Well, what if we taught these shapes to have zero bias?
 			(Or if you're feeling particularly nasty today, more bias?)
+			-->
+			Rovnost je nestabilní rovnováha.
+			Nejmenší předsudky mohou posunout celou společnost za bod zvratu.
+			No dobře, co kdybychom tedy naučili tyto Tvary nemít žádné předsudky?
+			(Nebo, pokud máš dnes poťouchlou náladu, mít silnější předsudky?) 
 		</p>
 		<div class="instruction">
-			use the slider to adjust the shapes' individual bias:
+			<!-- #TR
+			use the slider to adjust the shapes' individual bias: -->
+			Použij toto šoupátko k úpravě síly předsudků jednotlivých Tvarů:
 		</div>
 	</div>
 
 	<!-- PLAYABLE -->
 	<div class="playable">
-		<iframe playable src="play/automatic/automatic2.html" style="position:relative;left:10px" width="1050" height="600"></iframe>
+		<iframe playable src="play/automatic/automatic2.html" width="1030" height="600"></iframe>
 	</div>
 
 	<!-- CHAPTER -->
 	<div class="chapter">
 		<p>
+		<!-- #TR
 			Notice how much more segregated things become, when you increase the bias beyond 33%.
 			What if the threshold was at 50%?
 			Seems reasonable for a shape to prefer not being in the minority...
+			
+			-->
+			Všimni si, jak se zvýší segregace, když zvýšíš míru předsudků přes 33 %.
+			Co když nastavíš hranici na 50 %?
+			Žádný Tvar nechce být v menšině, to dává přeci smysl...
 		</p>
 		
-		<br>
 		<iframe id="mini_bias_1" playable src="play/mini/mini_bias_1.html" width="310" height="440" scrolling="no" style="float:left; margin:0; margin-left:50px" embedded></iframe>
 		<iframe id="mini_bias_2" playable src="play/mini/mini_bias_2.html" width="310" height="440" scrolling="no" style="float:right; margin:0; margin-right:50px" embedded></iframe>
-		<div style="clear:both;height: 0;position: relative;top:-20px;">
+		<div style="clear:both;height: 0;position: relative;">
 			<div style="width: 6px; height: 400px; background: #bbb;position: absolute;top: -420px;left: 397px;"></div>
 		</div>
 
 		<p>
+		<!-- #TR
 			So yeah, just turn everyone's bias down to zero, right?
 			Haha, NOPE. The real world doesn't start anew with a random shuffling of citizens every day.
 			Everyday, you're not shuffling.
+			-->
+			Takže teďka všem nastavíme míru předsudků na nulu, jo?
+			Haha, ale kdepak. Skutečný svět nezačíná každý den s náhodným rozmícháním obyvatel.
+			Nemůžeš jimi míchat každý den.
 		</p>
 
 		<div class="instruction">
+		<!-- #TR
 			world starts segregated. what happens when you lower the bias?
+			-->
+			Když začneme se segregovaným světem, co se stane, když snížíš předsudky?
 		</div>
 	</div>
 
 	<!-- PLAYABLE -->
 	<div class="playable">
-		<iframe playable src="play/automatic/automatic3.html" style="position:relative;left:10px" width="1050" height="600"></iframe>
+		<iframe playable src="play/automatic/automatic3.html" width="1030" height="600"></iframe>
 	</div>
 
 	<!-- CHAPTER -->
 	<div class="chapter">
 		<p>
+		<!-- 3TR
 			See what <i>doesn't</i> happen? 
 			No change. No mixing back together.
 			In a world where bias ever existed, being unbiased isn't enough!
 			We're gonna need active measures.
 			What if shapes wanted to seek out just a lil' more variety?
+			-->
+			Vidíš, co se <i>nestalo</i>?
+			Žádná změna. Žádné zpětné promíchávání.
+			Ve světě, kde už někdy předsudky existovaly, nestačí, když se předsudků zbavíme.
+			Bude potřeba podniknout nějaké aktivní kroky.
+			Co kdyby Tvary chtěly vyhledávat jen trošku víc rozmanitosti?
 		</p>
 		
-		<iframe id="mini_nonconform" playable src="play/mini/mini_nonconform.html" width="400" height="440" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
+		<iframe id="mini_nonconform" playable src="play/mini/mini_nonconform.html" width="400" height="460" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 
 		<p>
+		<!-- #TR
 			Woah. Even though each polygon would be okay with having up to 90% of their neighbors that are like them,
 			they all mix together!
 			Let's see this play out on a larger scale,
 			when we change the amount of bias and anti-bias for all shapes.
+			-->
+			Wow. I když by každý Tvar byl spokojený, kdyby bylo až 90 % sousedů jako on,
+			všechny by se začali promíchávat.
+			Přehrajme si to na větším příkladu,
+			kde můžeme nastavit míru předsudků a proti-předsudků pro všechny Tvary.
 		</p>
 		<div class="instruction">
+		<!-- #TR
 			world starts segregated. what happens when shapes demand even the smallest bit of diversity?
+			-->
+			Svět začal segregovaný. Co se stane, když Tvary budou požadovat alespoň malinko rozmanitosti?
 		</div>
 	</div>
 
 	<!-- PLAYABLE -->
 	<div class="playable">
-		<iframe playable src="play/automatic/automatic4.html" style="position:relative;left:10px" width="1050" height="600"></iframe>
+		<iframe playable src="play/automatic/automatic4.html" width="1030" height="600"></iframe>
 	</div>
 
 	<!-- CHAPTER -->
 	<div class="chapter">
 		<p>
+		<!-- #TR
 			All it takes is a change in the perception of what an acceptable environment looks like.
 			So, fellow shapes, remember it's not about triangles vs squares,
 			it's about deciding what we want the world to look like, and settling for no less.
+			-->
+			Jediné, co bylo potřeba, je změna vnímání toho, jak by mělo vypadat přijatelné prostředí.
+			Takže, přátelé Tvary, myslete na to, že nejde jen o Trojúhelníky proti Čtvercům,
+			je to také o tom, jak chceme, aby vypadal svět, a nespokojit se s ničím menším. 
 		</p>
 		<p style="text-align:center">
 			<b>
+			<!--
 				GET THEM ALL IN THE BOX OF
 				<span style="color:hsl(0,90%,60%)">F</span>
 				<span style="color:hsl(36,90%,60%)">R</span>
@@ -233,51 +329,88 @@
 				<span style="color:hsl(324,90%,60%)">P</span>
 				<br>
 				<span style="font-size:18px">(hint: don't move them straight to the box; keep the pairs close together)</span>
+				-->
+				POMOŽ JIM DO MÍSTNOSTI
+				<span style="color:hsl(0,90%,60%)">P</span>
+				<span style="color:hsl(36,90%,60%)">Ř</span>
+				<span style="color:hsl(72,90%,45%)">Á</span>
+				<span style="color:hsl(108,90%,60%)">T</span>
+				<span style="color:hsl(144,90%,60%)">E</span>
+				<span style="color:hsl(180,90%,60%)">L</span>
+				<span style="color:hsl(216,90%,60%)">S</span>
+				<span style="color:hsl(252,90%,60%)">T</span>
+				<span style="color:hsl(288,90%,60%)">V</span>
+				<span style="color:hsl(324,90%,60%)">Í</span>
+				<br>
+				<span style="font-size:18px">(nápověda: nepřesouvej je rovnou do místnosti; drž je blízko sebe ve dvojicích)</span>
 			</b>
 		</p>
 
 		<iframe playable src="play/mini/mini_cooperate.html" width="810" height="290" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 		
 		<p>
+		<!-- #TR
 			At first, going out on your own can be isolating...
 			but by working together, step by step, we'll get there.
+			-->
+			Na začátku, když vykročíš jako první, můžeš se cítit izolovaný, 
+			ale když na tom budeme pracovat spolu, krok za krokem, dosáhneme cíle.
 		</p>
 
 		<div class="instruction">
+		<!-- #TR 
 			finally, a big ol' sandbox to play around in.
+			-->
+			A nakonec, staré dobré velké pískoviště, na kterém si můžeš hrát.
 		</div>
 	</div>
 
 	<!-- PLAYABLE -->
 	<div class="playable">
-		<iframe playable src="play/automatic/automatic_sandbox.html" style="position:relative;left:10px" width="1050" height="600"></iframe>
+		<iframe playable src="play/automatic/automatic_sandbox.html" width="1030" height="600"></iframe>
 	</div>
 
 	<!-- CHAPTER -->
 	<div class="chapter">
 		<div class="instruction" style="font-size:50px; line-height:50px">
-			WRAPPING UP:
+			<!-- #TR 
+			WRAPPING UP: -->
+			Shrnutí:
 		</div>
 		<p>
-			<b>1. Small individual bias &rarr; Large collective bias.</b>
+			<b><!-- #TR 1. Small individual bias &rarr; Large collective bias. -->
+			 1. Malý individuální předsudek &rarr; velký společný předsudek. </b>
 			<br>
 			<!--Micromotives, macrobehaviour...-->
+			<!-- #TR
 			When someone says a culture is shapist, they're not saying the <i>individuals</i> in it are shapist.
 			They're not attacking you personally.
+			-->
+			Když někdo říká, že kultura je tvaristická, neříká že <i>jednotlivci</i> jsou tvaristi.
 		</p>
 		<p>
-			<b>2. The past haunts the present.</b>
+			<b><!-- #TR 2. The past haunts the present.-->
+				2. Minulost straší i v přítomnosti.
+			</b>
 			<br>
+			<!-- #TR
 			Your bedroom floor doesn't stop being dirty just coz you stopped dropping food all over the carpet.
-			Creating equality is like staying clean: it takes work. And it's always a work in progress.
+			Creating equality is like staying clean: it takes work. And it's always a work in progress.-->
+			Podlaha ve tvojí ložnici nepřestane být špinavá, jen protože jsi přestal odhazovat jídlo po celém koberci.
+			Vytvoření rovnosti je jako udržovat čistotu: vyžaduje to práci. A je to nikdy nekončící práce.
 		</p>
 		<p>
-			<b>3. Demand diversity near you.</b>
+			<b><!-- #TR 3. Demand diversity near you. -->
+				3. Vyžaduj poblíž sebe různorodost.
+			</b>
 			<br>
-			If small biases created the mess we're in, small anti-biases might fix it.
+			<!-- #TR If small biases created the mess we're in, small anti-biases might fix it.
 			Look around you. Your friends, your colleagues, that conference you're attending.
 			If you're all triangles, you're missing out on some amazing squares in your life -
-			that's unfair to everyone. Reach out, beyond your immediate neighbors.
+			that's unfair to everyone. Reach out, beyond your immediate neighbors. -->
+
+			Jestliže malé předsudky vytvořily to neštěstí, ve kterém teď jsme, malé proti-předsudky to mohou napravit.
+			Rozhlédni se kolem sebe. Tví přátelé, tví kolegové, konference na kterou jedeš. Jestliže jste všichni Trojúhelníci, chybí ti nějaké úžasné Čtverce ve tvém životě - a to není k nikomu fér. Rozhlédni se i mimo své nejbližší sousedy.
 		</p>
 		<iframe playable src="play/mini/mini_ending.html" width="600" height="80" scrolling="no" style="margin:0 auto;display:block" embedded></iframe>
 	</div>
@@ -286,50 +419,86 @@
 	<div style="width: 100%; background: #222; overflow: hidden; color:#ddd">
 		<div class="chapter">
 			<div class="instruction">
-				Thank you for playing this blog post!
+				<!-- #TR
+				Thank you for playing this blog post!-->
+				Děkujeme, že sis hrál s touto stránkou!
 			</div>
 			<br>
 			<div style="font-size:16px; line-height:18px">
-
-				Our cute segregation sim is based off the work of Nobel Prize-winning game theorist,
-				Thomas Schelling. Specifically, his 1971 paper,
+				<!-- #TR
+				Our cute, adorable segregation simulator is based off the work of Nobel Prize-winning game theorist,
+				Thomas Schelling. Specifically, his mathematical model of racial segregation found in
 				<a target="_blank" href="http://www.stat.berkeley.edu/~aldous/157/Papers/Schelling_Seg_Models.pdf">
 				Dynamic Models of Segregation.</a>
-				We built on top of this, and showed how a small demand for diversity can
-				desegregate a neighborhood. In other words, we gave his model a happy ending.
+				We built on top of his model, by showing how adding a small cultural demand for diversity can help
+				desegregate a neighborhood. In other words, we gave his model a happy ending.-->
+
+				Náš roztomilý a rozkošný segregační simulátor je postaven na práci Nobelovou cenou oceněného teoretika her, Thomase Schellinga. Konkrétně, jeho matematický model rasové segregace z článku <a target="_blank" href="http://www.stat.berkeley.edu/~aldous/157/Papers/Schelling_Seg_Models.pdf">
+				Dynamic Models of Segregation.</a>
+				Stavěli jsme na tomto modelu, snahou ukázat, jak přidání malé společenské poptávky po rozmanitosti může pomoci odsegregovat čtvrť. Jinými slovy, přidali jsme tomuto modelu šťastný konec.
 
 				<br><br>
+				<!-- #TR
+				Schelling's model is a convincing demonstration of how
+				<span cartoon="hat.jpg">innocent-seeming</span> rules
+				can create very undesirable outcomes, but of course real-life situations are more complicated.
+				You might enjoy taking a closer look at real data in reference to Schelling's model.
+				W.A.V. Clark's 1991 paper <a target="_blank" href="http://smg.media.mit.edu/library/Clark.ResidentialSegregation.pdf">
+				Residential Preferences and Neighborhood Racial Segregation: A Test of the Schelling Segregation Model</a>
+				has a lot of interesting data in it.
+				-->
 
-				Schelling's model gets the general gist of it, but of course, real life is more nuanced.
-				You might enjoy looking at real-world data, such as W.A.V. Clark's 1991 paper,
-				<a target="_blank" href="http://smg.media.mit.edu/library/Clark.ResidentialSegregation.pdf">A Test of the Schelling Segregation Model</a>.
+				Schellingův model je přesvědčivou demonstrací, jak <span cartoon="hat.jpg">zdálivě nevinná</span> pravidla mohou vytvořit velmi nechtěné výsledky, reálný svět je ale samozřejmě ještě složitější.
+				Mohlo by se ti líbit podívat se podrobněji na skutečná data ve vztahu k Schellingovu modelu.
+				Článek od W.A.V. Clarka, z roku 1991 <a target="_blank" href="http://smg.media.mit.edu/library/Clark.ResidentialSegregation.pdf">
+				Residential Preferences and Neighborhood Racial Segregation: A Test of the Schelling Segregation Model</a>
+				obsahuje mnoho zajímavých dat.
 
 				<br><br>
-
-				There are other mathematical models of institutionalized bias out there!
+				<!-- #TR
+				Schelling's model explores one small aspect of how tiny bias can have large accumulative effects,
+				but there's other models that focus on other aspects.
 				<a target="_blank" href="http://www.ruf.rice.edu/~lane/papers/male_female.pdf">
 				Male-Female Differences: A Computer Simulation</a>
-				shows how a small gender bias compounds as you move up the corporate ladder.
+				shows how extremely small differences in the perception of men and women's work can have huge effects.
 				<a target="_blank" href="http://iangent.blogspot.com/2013/10/the-petrie-multiplier-why-attack-on.html">
 				The Petrie Multiplier</a>
-				shows why an attack on sexism in tech is <i>not</i> an attack on men.
+				explores how small negative actions of
+				<span cartoon="not_all_triangles.jpg">a few bad apples</span>
+				can become multiplied by certain situations.
+				--> 
+
+				Schellingův model prozkoumává pouze malou část toho, jak malinké předsudky mohou mít velké akumulované efekty, ale existují i jiné modely zkoumající toto téma. 
+				<a target="_blank" href="http://www.ruf.rice.edu/~lane/papers/male_female.pdf">
+				Male-Female Differences: A Computer Simulation</a> ukazuje jak velmi malý rozdíl ve vnímání práce mužů a žen může mít obrovský efekt.
+				<a target="_blank" href="http://iangent.blogspot.com/2013/10/the-petrie-multiplier-why-attack-on.html">
+				The Petrie Multiplier</a> prozkoumává, jak malá negativní akce <span cartoon="not_all_triangles.jpg">několika zkažených jedinců</span> se může znásobit v určitých situacích.
 
 				<br><br>
-
-				Today's Big Moral Message&trade; is that demanding a bit of diversity
-				in your spaces makes a huge difference overall. Look at
-				<a target="_blank" href="http://plzdiversifyyourpanel.tumblr.com/">Plz Diversify Your Panel</a>,
-				an initiative where overrepresented speakers pledge not
-				to speak on panels without diverse representation.
+				<!-- #TR
+				The takeaway from our variant of Schelling's simulator is that demanding a single bit of diversity
+				in your spaces makes a huge difference overall. For a real-world application of this idea,
+				see <a target="_blank" href="http://plzdiversifyyourpanel.tumblr.com/">Plz Diversify Your Panel</a>,
+				an initiative where overrepresented speakers refuse invitations
+				to speak on panels that don't include diverse representation.
+				-->
+				Závěr z naší varianty Schellingova simulátoru je ten, že vyžadování byť jen malinké trošky rozmanitosti v našem prostředí dělá obrovský rozdíl. Pro použití této myšlenky v reálném světě, se podívejte na <a target="_blank" href="http://plzdiversifyyourpanel.tumblr.com/">Plz Diversify Your Panel</a>, kde příliš zastoupení řečníci odmítají pozvánky na konference, které neobsahují rozmanité přednášející.
 
 				<br><br>
-
-				Our "playable post" was inspired by Bret Victor's 
+				<!-- #TR
+				The format of this playable post was inspired by Bret Victor's work on 
 				<a target="_blank" href="http://worrydream.com/ExplorableExplanations/">
-				Explorable Explanations</a> and Ian Bogost's
+				Explorable Explanations</a> and Ian Bogost's work on 
 				<a target="_blank" href="http://bogost.com/books/persuasive_games/">
 				procedural rhetoric</a>.
+				-->
 
+<<<<<<< HEAD
+				Formát této stránky byl inspirován prací Breta Victora na <a target="_blank" href="http://worrydream.com/ExplorableExplanations/">
+				Explorable Explanations</a> a prací Iana Bogosta na téma 
+				<a target="_blank" href="http://bogost.com/books/persuasive_games/">
+				procedural rhetoric</a>.
+=======
 				<br><br>
 				<div style="border-bottom: 2px dashed #666"></div>
 
@@ -410,6 +579,7 @@
 					<a target="_blank" href="https://youtu.be/v02DTSSTc5k">Playthrough Video</a>
 
 				</span>
+>>>>>>> FETCH_HEAD
 
 			</div>
 		</div>
