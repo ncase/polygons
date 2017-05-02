@@ -13,8 +13,10 @@ var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5)
 
 
 
-window.RATIO_TRIANGLES = 0.5;
-window.RATIO_SQUARES = 0.5;
+//window.RATIO_TRIANGLES = 0.5;
+//window.RATIO_SQUARES = 0.5;
+window.RATIO_TRIANGLES = 0.3;
+window.RATIO_SQUARES = 0.3;
 window.EMPTINESS = 0.2;
 
 
@@ -36,6 +38,10 @@ addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
+//New code added here for circle image files
+addAsset("yayCircle","../img/yay_circle.png");
+addAsset("mehCircle","../img/meh_circle.png");
+addAsset("sadCircle","../img/sad_circle.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
@@ -186,7 +192,7 @@ function Draggable(x,y){
 			ctx.translate(0,-20);
 		}
 
-		// Draw thing
+		// Draw image based on its color specifications.
 		var img;
 		if(self.color=="triangle"){
 			if(self.shaking){
@@ -196,7 +202,24 @@ function Draggable(x,y){
 			}else{
 				img = images.yayTriangle;
 			}
-		}else{
+        }else if(self.color=="square"){
+            if(self.shaking){
+				img = images.sadSquare;
+			}else if(self.bored){
+				img = images.mehSquare;
+			}else{
+				img = images.yaySquare;
+			}
+        }else{
+            if(self.shaking){
+                img = images.sadCircle; 
+            }else if(self.bored){
+                img = images.mehCircle;
+            }else{
+                img = images.yayCircle;   
+            }
+        }
+		/*}else{
 			if(self.shaking){
 				img = images.sadSquare;
 			}else if(self.bored){
@@ -204,7 +227,8 @@ function Draggable(x,y){
 			}else{
 				img = images.yaySquare;
 			}
-		}
+		}*/
+        
 
 		// Dangle
 		if(self.dragged){
@@ -240,7 +264,15 @@ window.reset = function(){
 		for(var y=0;y<GRID_SIZE;y++){
 			if(Math.random()<(1-window.EMPTINESS)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = (Math.random()<window.RATIO_TRIANGLES) ? "triangle" : "square";
+				//draggable.color = (Math.random()<window.RATIO_TRIANGLES) ? "triangle" : "square";
+                var randomVal = Math.random();
+                if(randomVal < window.RATIO_TRIANGLES){
+                    draggable.color = "triangle";
+                }else if(randomVal < window.RATIO_TRIANGLES + window.RATIO_SQUARES){
+                    draggable.color = "square";
+                }else{
+                    draggable.color = "circle";
+                }
 				draggables.push(draggable);
 			}
 		}
