@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Image Translator</title>
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <link href="fonts/ostrich-sans.css" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            max-width: 800px;
+            margin: auto;
+        }
+        .ostrich {
+            font-family: 'Ostrich Sans';
+        }
+        .ostrich-black {
+            font-family: 'Ostrich Sans Black';
+        }
+        .ostrich-light {
+            font-family: 'Ostrich Sans Light';
+        }
+        img, canvas {
+            display: block;
+            max-width: 800px;
+            box-shadow: 0px 0px 10px black;
+            background-image: linear-gradient(45deg, silver 25%, transparent 25%, transparent 75%, silver 75%, silver), 
+                linear-gradient(45deg, silver 25%, transparent 25%, transparent 75%, silver 75%, silver);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        button {
+            margin: 0 0 40px 0;
+        }
+    </style>
+    <script src="lib/canvas-toBlob.js"></script>
+    <script src="lib/FileSaver.js"></script>
+    <script>
+    // delay drawing until fonts and images have been loaded
+    var drawFuncs = [];
+    function draw(drawFunc) {
+        // add canvas after img
+        var images = document.getElementsByTagName("img"),
+            img = images[images.length - 1],
+            filename = img.src.match(".*[^/]/(.*)$")[1],
+            canvas = document.createElement("canvas"),
+            ctx = canvas.getContext("2d");
+        drawFuncs.push(function(){
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            drawFunc(ctx, img);
+        });
+        canvas.onmouseenter = function(){canvas.parentNode.replaceChild(img, canvas)};
+        img.onmouseleave = function(){img.parentNode.replaceChild(canvas, img)};
+        img.onmouseleave();
+        img.onmousedown = function(evt){
+            console.log([evt.pageX - evt.target.offsetLeft, evt.pageY - evt.target.offsetTop]);
+        };        
+        // make download button
+        var button = document.createElement("button");
+        document.body.appendChild(button);
+        button.innerHTML = filename;
+        button.onclick = function() {
+            canvas.toBlob(function(blob) {
+                saveAs(blob, filename);
+            });
+        }
+    }
+    function hex(n) {
+        return (n < 16 ? "0" : "") + n.toString(16);
+    }
+    function tapeRect(ctx, x, y, w, h) {
+        var pixels= ctx.getImageData(x, y, 1, 1).data,
+            color = "#" + hex(pixels[0]) + hex(pixels[1]) + hex(pixels[2]);
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+    }
+    function putText(ctx, x, y, height, color, font, text) {
+        ctx.fillStyle = color;
+        ctx.font = height + "px '" + font + "'";
+        ctx.fillText(text, x, y);
+    }
+    window.onload = function() {
+        drawFuncs.forEach(function (f) { f() });
+    }
+    </script>
+</head>
+<body>
+    <h1>Image Translator</h1>
+    <em>by <a href="https://github.com/bertfreudenberg">Bert Freudenberg</a></em>
+    <p>This page creates translated images used by <a href="http://ncase.me/polygons/">Parable of the Polygons</a>.
+    To make your own translation, translate this page’s source code, adjust font sizes and positions, then click the button to download the translated image.
+    Mouse over to see the original.</p>
+
+    <p>Fonts: <span class="ostrich">Ostrich Sans</span>,
+        <span class="ostrich-black">Ostrich Sans Black</span>,
+        <span class="ostrich-light">Ostrich Sans Light</span> by the
+        <a href="https://www.theleagueofmoveabletype.com/ostrich-sans">League of Movable Type</a>.</p>
+
+    <img src="../play/intro/intro_banner.png"></img>
+    <script>
+        draw(function(ctx) {
+            var gradient = ctx.createRadialGradient(0.5, 0.5, 0.35, 0.5, 0.5, 0.5);
+            gradient.addColorStop(0, "rgba(0, 0, 0, 0.0)");
+            gradient.addColorStop(1, "rgba(0, 0, 0, 0.8)");
+            ctx.save()
+                ctx.translate(0, 25);
+                ctx.scale(1280, 500);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, -0.1, 1, 1.2);
+            ctx.restore();
+            putText(ctx, 160, 195, 128, "white", "Ostrich Sans", "Parable of the Polygons");
+            putText(ctx, 290, 250, 56, "gray", "Ostrich Sans", "A Playable Post on the Shape of Society");
+        })
+    </script>
+
+    <img src="../play/mini/dragging.png"></img>
+    <script>
+        draw(function(ctx, img) {
+            ctx.drawImage(img, 0, 0);
+            for (var y = 100; y < 200; y += 80)
+                tapeRect(ctx, 220, y, 340, 60);
+            putText(ctx, 246, 156, 50, "#aaa", "Ostrich Sans Black", "Drag & Drop the");
+            putText(ctx, 250, 218, 44, "#aaa", "Ostrich Sans Black", "Unhappy Polygons");
+        })
+    </script>
+
+    <img src="../play/img/ui_buttons.png"></img>
+    <script>
+        draw(function(ctx, img) {
+            ctx.drawImage(img, 0, 0);
+            for (var y = 6; y < 408; y += 52)
+                tapeRect(ctx, 56, y, 133, 34);
+            for (var y = 38; y < 200; y += 52)
+                putText(ctx, 58, y, 42, "#fff", "Ostrich Sans Light", "New Board");
+            for (var y = 245; y < 300; y += 52)
+                putText(ctx, 58, y, 36, "#fff", "Ostrich Sans Light", "Start Movin'");
+            for (var y = 350; y < 450; y += 52)
+                putText(ctx, 58, y, 41, "#fff", "Ostrich Sans Light", "Stop Movin'");
+        })
+    </script>
+
+    <img src="../play/img/stats.png"></img>
+    <script>
+        draw(function(ctx, img) {
+            ctx.drawImage(img, 0, 0);
+            tapeRect(ctx, 5, 164, 20, 105);
+            tapeRect(ctx, 30, 275, 40, 18);
+            putText(ctx, 35, 293, 20, "#666", "Ostrich Sans Black", "Time");
+            ctx.rotate(Math.PI/-2);
+            putText(ctx, -260, 22, 20, "#666", "Ostrich Sans Black", "Segregation");
+        })
+    </script>
+</body>
+</html>
